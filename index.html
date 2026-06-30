@@ -1,58 +1,149 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-title" content="澳门VIP百家乐"/>
-<meta name="theme-color" content="#7b1119"/>
-<link rel="manifest" href="./manifest.json"/>
-<link rel="stylesheet" href="./css/app.css"/>
-<title>澳门VIP百家乐 Final</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="澳门VIP百家乐">
+<meta name="theme-color" content="#100405">
+<title>澳门VIP百家乐 · App Final</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080203;touch-action:none}
+body{position:fixed;inset:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",Arial,sans-serif}
+#game{display:block;width:100vw;height:100vh;background:#080203}
+#hint{position:fixed;left:10px;bottom:8px;color:rgba(255,255,255,.45);font:11px -apple-system,BlinkMacSystemFont,"PingFang SC",Arial;pointer-events:none}
+</style>
 </head>
 <body>
-<div id="app">
-<header class="top"><button id="resetBtn">重置</button><b>MACAU VIP BACCARAT · FINAL</b><span>余额 <strong id="money">10,000</strong></span></header>
-
-<section class="live">
-  <div class="tag"><i>LIVE</i><i>1080P</i><i id="state">等待下注</i></div>
-  <div class="lamp a"></div><div class="lamp b"></div><div class="lamp c"></div>
-  <div class="bg t1"></div><div class="bg t2"></div><div class="bg t3"></div>
-  <div class="dealer">
-    <div class="hair"></div><div class="face"><em></em><em></em><small></small></div><div class="neck"></div>
-    <div class="body"></div><div class="tie"></div><div class="arm l"></div><div class="arm r"></div>
-  </div>
-  <div class="felt">
-    <div class="hand"><h3>闲 PLAYER</h3><div id="pCards" class="cards"></div><b id="pScore">0</b></div>
-    <div class="hand banker"><h3>庄 BANKER</h3><div id="bCards" class="cards"></div><b id="bScore">0</b></div>
-  </div>
-  <div class="round">局号 GH<span id="roundNo">000001</span>　<span id="shoeLeft">牌靴416</span></div>
-  <div id="toast" class="toast"></div>
-</section>
-
-<section class="betPanel">
-  <div class="timer" id="timer">15</div>
-  <div class="side"><button>对子<b>1:11</b></button><button>完美对子<b>1:25</b></button><button>任意对子<b>1:5</b></button><button>大<b>1:0.54</b></button><button>小<b>1:1.5</b></button></div>
-  <div class="bets">
-    <button class="bet P" data-bet="P"><small>下注 <b id="betP">0</b></small><i id="pctP">0%</i><strong>闲</strong><span>1:1</span></button>
-    <button class="bet T" data-bet="T"><small>下注 <b id="betT">0</b></small><i id="pctT">0%</i><strong>和</strong><span>1:8</span></button>
-    <button class="bet B" data-bet="B"><small>下注 <b id="betB">0</b></small><i id="pctB">0%</i><strong>庄</strong><span>1:0.95</span></button>
-  </div>
-  <div class="actions"><button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="doubleBtn">加倍</button><button id="dealBtn">开始发牌</button></div>
-</section>
-
-<section class="chips">
-  <button class="chip active c10" data-chip="10">10</button><button class="chip c50" data-chip="50">50</button><button class="chip c100" data-chip="100">100</button><button class="chip c500" data-chip="500">500</button><button class="chip c1k" data-chip="1000">1K</button><button class="chip c5k" data-chip="5000">5K</button>
-</section>
-
-<section class="roads">
-  <div class="roadHead"><span class="red">庄 <b id="cntB">0</b></span><span class="blue">闲 <b id="cntP">0</b></span><span class="green">和 <b id="cntT">0</b></span><span class="profit">盈亏 <b id="profit">0</b></span></div>
-  <div class="tabs"><button class="on" data-tab="bead">珠盘路</button><button data-tab="big">大路</button><button data-tab="derived">三小路</button></div>
-  <div class="page show" id="page-bead"><div id="bead" class="bead"></div></div>
-  <div class="page" id="page-big"><div id="bigRoad" class="bigRoad"></div></div>
-  <div class="page" id="page-derived"><p>大眼路</p><div id="eyeRoad" class="derived"></div><p>小路</p><div id="smallRoad" class="derived"></div><p>曱甴路</p><div id="cockRoad" class="derived"></div></div>
-</section>
-</div>
-<script type="module" src="./js/app.js"></script>
+<canvas id="game"></canvas>
+<div id="hint">娱乐模拟 · 8副牌真实补牌规则 · 本地保存</div>
+<script>
+const canvas=document.getElementById('game'), ctx=canvas.getContext('2d');
+let W=0,H=0,DPR=1;
+const suits=['♠','♥','♦','♣'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+let money=10000, chip=100, bets={P:0,T:0,B:0}, lastBet={P:0,T:0,B:0}, shoe=[], hist=[], round=1, profit=0;
+let pHand=[], bHand=[], busy=false, toast='', toastT=0, timer=15, phase='等待下注', winner=null;
+let hit=[], chips=[];
+function save(){localStorage.macauCanvasFinal=JSON.stringify({money,chip,bets,lastBet,shoe,hist,round,profit});}
+function load(){try{let s=JSON.parse(localStorage.macauCanvasFinal||'{}'); if(s.money!=null){money=s.money;chip=s.chip||100;bets=s.bets||bets;lastBet=s.lastBet||lastBet;shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();}
+function newShoe(){shoe=[];for(let d=0;d<8;d++)for(let s of suits)for(let r of ranks)shoe.push({r,s});for(let i=shoe.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shoe[i],shoe[j]]=[shoe[j],shoe[i]]}}
+function val(c){return c.r==='A'?1:('10JQK'.includes(c.r)?0:+c.r)}
+function total(h){return h.reduce((a,c)=>a+val(c),0)%10}
+function drawCard(){if(shoe.length<60)newShoe();return shoe.pop()}
+function thirdRule(bt,p3){if(p3==null)return bt<=5;if(bt<=2)return true;if(bt===3)return p3!==8;if(bt===4)return p3>=2&&p3<=7;if(bt===5)return p3>=4&&p3<=7;if(bt===6)return p3===6||p3===7;return false}
+function resize(){DPR=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(DPR,0,0,DPR,0,0);layout();}
+window.addEventListener('resize',resize);
+function addHit(id,x,y,w,h){hit.push({id,x,y,w,h})}
+function layout(){
+ hit=[]; const top=46, liveH=Math.max(290,H*.39), betY=top+liveH-8, betH=Math.max(248,H*.31);
+ const roadY=Math.max(betY+betH+72,H-Math.max(168,H*.21));
+ addHit('reset',6,8,52,30);
+ addHit('deal',W-128,betY+betH-43,118,36);
+ addHit('clear',8,betY+betH-43,70,36);
+ addHit('repeat',84,betY+betH-43,70,36);
+ addHit('double',160,betY+betH-43,70,36);
+ let zoneY=betY+82, zoneH=104;
+ addHit('P',0,zoneY,W*.36,zoneH); addHit('T',W*.36,zoneY,W*.28,zoneH); addHit('B',W*.64,zoneY,W*.36,zoneH);
+ const chipY=betY+betH+8, gap=10, cw=Math.min(58,(W-70)/6);
+ const vals=[10,50,100,500,1000,5000]; chips=[];
+ let start=(W-(cw*6+gap*5))/2;
+ vals.forEach((v,i)=>{let x=start+i*(cw+gap);chips.push({v,x,y:chipY,w:cw,h:cw});addHit('chip'+v,x,chipY,cw,cw)});
+ addHit('tab1',0,roadY, W/3,32); addHit('tab2',W/3,roadY, W/3,32); addHit('tab3',W*2/3,roadY, W/3,32);
+}
+let tab=1;
+function roundRect(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.stroke()}}
+function grad(x,y,w,h,a,b){let g=ctx.createLinearGradient(x,y,x,y+h);g.addColorStop(0,a);g.addColorStop(1,b);return g}
+function text(t,x,y,size,color='white',align='center',weight='700'){ctx.fillStyle=color;ctx.font=`${weight} ${size}px -apple-system,BlinkMacSystemFont,"PingFang SC",Arial`;ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(t,x,y)}
+function draw(){
+ ctx.clearRect(0,0,W,H); layout();
+ const top=46, liveH=Math.max(290,H*.39), betY=top+liveH-8, betH=Math.max(248,H*.31);
+ const chipY=betY+betH+8, roadY=Math.max(chipY+72,H-Math.max(168,H*.21)), roadH=H-roadY;
+ drawTop(top); drawLive(top,liveH); drawBet(betY,betH); drawChips(); drawRoads(roadY,roadH); drawToast();
+ requestAnimationFrame(draw);
+}
+function drawTop(top){
+ ctx.fillStyle=grad(0,0,W,top,'#fff','#ececec');ctx.fillRect(0,0,W,top);
+ text('重置',32,23,13,'#222'); text('MACAU VIP BACCARAT',W/2,23,14,'#202027','center','900');
+ roundRect(W-118,10,108,26,13,'#eee3d2'); text('余额 '+money.toLocaleString('zh-CN'),W-64,23,12,'#a7111c','center','900');
+}
+function drawLive(top,h){
+ let y=top; ctx.fillStyle=grad(0,y,W,h,'#dec7a4','#342120');ctx.fillRect(0,y,W,h);
+ for(let i=0;i<14;i++){ctx.fillStyle=`rgba(255,255,255,${i%2?0.06:0.03})`;ctx.fillRect(i*W/14,y,2,h)}
+ let rg=ctx.createRadialGradient(W/2,y+20,5,W/2,y+20,W*.45);rg.addColorStop(0,'rgba(255,248,215,.85)');rg.addColorStop(1,'rgba(255,248,215,0)');ctx.fillStyle=rg;ctx.fillRect(0,y,W,h*.5);
+ ['LIVE','1080P',phase].forEach((s,i)=>{roundRect(10+i*58,y+10,52,22,11,'rgba(0,0,0,.58)');text(s,36+i*58,y+21,10,i==0?'#ff3442':'#fff')});
+ drawDealer(W/2,y+h-220);
+ drawFelt(W/2,y+h-6);
+ text('局号 GH'+String(round).padStart(6,'0')+'　牌靴'+shoe.length,12,y+h-18,12,'#fff','left');
+}
+function drawDealer(cx,cy){
+ ctx.save();ctx.translate(cx-100,cy);
+ ctx.fillStyle='#111';ctx.beginPath();ctx.roundRect(45,0,110,78,38);ctx.fill();
+ ctx.fillStyle=grad(0,0,0,0,'#f7d4c2','#dc9f91');ctx.beginPath();ctx.ellipse(100,84,43,48,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#2a1115';ctx.beginPath();ctx.ellipse(77,84,5,3,0,0,Math.PI*2);ctx.ellipse(123,84,5,3,0,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle='#c43a4a';ctx.lineWidth=3;ctx.beginPath();ctx.arc(100,112,12,0.15*Math.PI,0.85*Math.PI);ctx.stroke();
+ ctx.fillStyle='#e4ad9d';ctx.fillRect(84,128,32,26);
+ ctx.fillStyle=grad(36,144,134,90,'#fff','#e8e8e8');ctx.beginPath();ctx.roundRect(36,144,134,90,28);ctx.fill();
+ ctx.fillStyle='#1b2e62';ctx.beginPath();ctx.ellipse(100,158,26,12,0,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#e6b19f';ctx.beginPath();ctx.roundRect(0,180,92,18,10);ctx.roundRect(108,180,92,18,10);ctx.fill();
+ ctx.restore();
+}
+function drawFelt(cx,bottom){
+ const w=W*.94,h=156,x=cx-w/2,y=bottom-h+38;
+ ctx.fillStyle='#c7a46b';ctx.beginPath();ctx.ellipse(cx,y+h,w/2,80,0,Math.PI,Math.PI*2);ctx.fill();
+ ctx.fillStyle=ctx.createRadialGradient(cx,y+h-20,10,cx,y+h-20,w/2);ctx.fillStyle=grad(x,y,w,h,'#c4212e','#7c1119');
+ ctx.beginPath();ctx.ellipse(cx,y+h,w/2-8,72,0,Math.PI,Math.PI*2);ctx.fill();
+ drawHand(cx-80,y+42,pHand,'闲 PLAYER','#48c9ff'); drawHand(cx+80,y+42,bHand,'庄 BANKER','#ffd088');
+}
+function drawHand(cx,y,hand,title,color){
+ text(title,cx,y-14,13,color); hand.forEach((c,i)=>drawCard(cx-38+i*38,y,c,34,46)); text(total(hand),cx,y+62,20,'#fff','center','900');
+}
+function drawCard(x,y,c,w,h){
+ roundRect(x,y,w,h,5,'#fff'); text(c.r+c.s,x+w/2,y+h/2,12,(c.s==='♥'||c.s==='♦')?'#d41724':'#222');
+}
+function drawBet(y,h){
+ ctx.fillStyle=grad(0,y,W,h,'#a61c29','#781019');ctx.beginPath();ctx.roundRect(0,y,W,h,18);ctx.fill();
+ roundRect(W/2-23,y+7,46,46,23,'#7c1018','#f4cacf');text(timer,W/2,y+30,24,'#fff','center','900');
+ const sideY=y+38, sideH=44, labels=[['对子','1:11'],['完美对子','1:25'],['任意对子','1:5'],['大','1:0.54'],['小','1:1.5']];
+ labels.forEach((l,i)=>{let x=i*W/5;ctx.strokeStyle='rgba(255,255,255,.13)';ctx.strokeRect(x,sideY,W/5,sideH);text(l[0],x+W/10,sideY+15,12,'#ffe0e0');text(l[1],x+W/10,sideY+32,12,'#ffd37a')});
+ const zy=y+82, zh=104; drawBetZone(0,zy,W*.36,zh,'P','闲','1:1','#3ac8ff'); drawBetZone(W*.36,zy,W*.28,zh,'T','和','1:8','#4ee47c'); drawBetZone(W*.64,zy,W*.36,zh,'B','庄','1:0.95','#ffd18d');
+ const ay=y+h-43, btns=[['取消',8,70],['重复',84,70],['加倍',160,70],['开始发牌',W-128,118]];
+ btns.forEach((b,i)=>{roundRect(b[1],ay,b[2],36,8,i==3?'#16161b':'#650d14');text(b[0],b[1]+b[2]/2,ay+18,15,i==3?'#f7d3c0':'#ffe1e1')});
+}
+function drawBetZone(x,y,w,h,key,label,odds,color){
+ if(winner===key) roundRect(x+2,y+2,w-4,h-4,10,'rgba(255,255,255,.16)');
+ ctx.strokeStyle='rgba(255,255,255,.16)';ctx.strokeRect(x,y,w,h);
+ const b=bets[key], totalBet=bets.P+bets.B+bets.T, pct=Math.round(b/Math.max(1,totalBet)*100);
+ text('下注 '+b,x+w/2,y+14,12,'#ffe4d6'); roundRect(x+w-54,y+34,42,42,21,'rgba(255,255,255,.14)');text(pct+'%',x+w-33,y+55,12,'#fff');
+ text(label,x+w/2,y+54,44,color,'center','900'); text(odds,x+w/2,y+87,17,'#fff','center','900');
+}
+function drawChips(){
+ chips.forEach(c=>{let active=c.v===chip; ctx.save(); if(active)ctx.translate(0,-8); const colors={10:'#303842',50:'#2aaee5',100:'#8c40d4',500:'#d15b38',1000:'#111',5000:'#bc8b21'}; ctx.beginPath();ctx.arc(c.x+c.w/2,c.y+c.h/2,c.w/2,0,Math.PI*2);ctx.fillStyle=colors[c.v];ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=5;ctx.setLineDash([5,5]);ctx.stroke();ctx.setLineDash([]); if(active){ctx.strokeStyle='#fff2a2';ctx.lineWidth=3;ctx.stroke()} text(c.v>=1000?c.v/1000+'K':c.v,c.x+c.w/2,c.y+c.h/2,14,'#fff','center','900'); ctx.restore();});
+}
+function drawRoads(y,h){
+ ctx.fillStyle='#fff';ctx.fillRect(0,y,W,h);ctx.fillStyle='#282830';ctx.fillRect(0,y,W,32);
+ text('庄 '+hist.filter(x=>x.res==='B').length,16,y+16,13,'#ff4450','left'); text('闲 '+hist.filter(x=>x.res==='P').length,82,y+16,13,'#33a3ff','left'); text('和 '+hist.filter(x=>x.res==='T').length,148,y+16,13,'#38d66e','left'); text('盈亏 '+profit,W-14,y+16,13,'#ffd37a','right');
+ ['珠盘路','大路','三小路'].forEach((t,i)=>{let x=i*W/3;ctx.fillStyle=tab===i+1?'#fff':'#eee';ctx.fillRect(x,y+32,W/3,30);text(t,x+W/6,y+47,13,tab===i+1?'#9e111b':'#333')});
+ if(tab===1)drawBead(y+66,h-66); else if(tab===2)drawBig(y+66,h-66); else drawDerived(y+66,h-66);
+}
+function drawBead(y,h){let arr=hist.slice(-84), size=22, cols=Math.floor(W/size);arr.forEach((r,i)=>drawRoadDot(8+(i%cols)*size,y+4+Math.floor(i/cols)*size,18,r.res,true))}
+function drawBig(y,h){let arr=hist.filter(x=>x.res!=='T').slice(-160), size=17, cols=Math.floor(W/size);arr.forEach((r,i)=>drawRoadDot(6+(i%cols)*size,y+4+Math.floor(i/cols)*size,13,r.res,false))}
+function drawDerived(y,h){let non=hist.filter(x=>x.res!=='T'), cols=[];for(let i=1;i<non.length;i++)cols.push(non[i].res===non[i-1].res?'B':'P');['大眼路','小路','曱甴路'].forEach((name,row)=>{text(name,8,y+10+row*42,11,'#333','left');cols.slice(row,-1).slice(-60).forEach((c,i)=>drawRoadDot(60+(i%30)*12,y+4+row*42+Math.floor(i/30)*12,9,c,false))})}
+function drawRoadDot(x,y,s,res,fill){
+ let col=res==='B'?'#ef1e31':res==='P'?'#1676e8':'#25be61';ctx.beginPath();ctx.arc(x+s/2,y+s/2,s/2,0,Math.PI*2); if(fill){ctx.fillStyle=col;ctx.fill();text(res==='B'?'庄':res==='P'?'闲':'和',x+s/2,y+s/2,s*.52,'#fff')}else{ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke()}
+}
+function drawToast(){if(Date.now()<toastT){ctx.globalAlpha=Math.min(1,(toastT-Date.now())/350);roundRect(W/2-130,H*.44,260,52,18,'rgba(0,0,0,.82)','rgba(255,255,255,.35)');text(toast,W/2,H*.44+26,28,'#ffd77f','center','900');ctx.globalAlpha=1}}
+function showToast(t){toast=t;toastT=Date.now()+1500;try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}}
+canvas.addEventListener('click',e=>{let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let h=hit.find(a=>x>=a.x&&x<=a.x+a.w&&y>=a.y&&y<=a.y+a.h); if(!h)return; handle(h.id)});
+function handle(id){if(id==='reset'){if(confirm('重置全部数据？')){localStorage.removeItem('macauCanvasFinal');location.reload()}return}
+ if(id==='tab1'){tab=1;return} if(id==='tab2'){tab=2;return} if(id==='tab3'){tab=3;return}
+ if(id.startsWith('chip')){chip=+id.slice(4);save();return} if(id==='clear'){if(busy)return;money+=bets.P+bets.T+bets.B;bets={P:0,T:0,B:0};save();return}
+ if(id==='repeat'){if(busy)return;let s=lastBet.P+lastBet.T+lastBet.B;if(!s)return showToast('没有上一局');if(money<s)return showToast('余额不足');money-=s;bets={...lastBet};save();return}
+ if(id==='double'){if(busy)return;let s=bets.P+bets.T+bets.B;if(!s)return showToast('请先下注');if(money<s)return showToast('余额不足');money-=s;bets.P*=2;bets.T*=2;bets.B*=2;save();return}
+ if(id==='deal'){deal();return} if(['P','T','B'].includes(id)){if(busy)return;if(money<chip)return showToast('余额不足');money-=chip;bets[id]+=chip;save();return}}
+async function deal(){if(busy)return;let stake=bets.P+bets.T+bets.B;if(!stake)return showToast('请先下注');busy=true;phase='发牌中';winner=null;lastBet={...bets};pHand=[];bHand=[];await sleep(300);pHand=[drawCard()];await sleep(350);bHand=[drawCard()];await sleep(350);pHand.push(drawCard());await sleep(350);bHand.push(drawCard());await sleep(450);let pt=total(pHand),bt=total(bHand),p3=null;if(!(pt>=8||bt>=8)){if(pt<=5){let c=drawCard();pHand.push(c);p3=val(c);await sleep(500)}if(thirdRule(total(bHand.slice(0,2)),p3)){bHand.push(drawCard());await sleep(500)}}pt=total(pHand);bt=total(bHand);let res=pt>bt?'P':bt>pt?'B':'T';let payout=0;if(res==='P')payout+=bets.P*2;if(res==='B')payout+=Math.floor(bets.B*1.95);if(res==='T')payout+=bets.T*9+bets.P+bets.B;money+=payout;let delta=payout-stake;profit+=delta;hist.push({res,pt,bt,delta});if(hist.length>240)hist.shift();winner=res;showToast((res==='P'?'闲赢':res==='B'?'庄赢':'和局')+' '+(delta>=0?'+':'')+delta);bets={P:0,T:0,B:0};round++;timer=15;phase='等待下注';busy=false;save()}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+load();resize();draw();
+setInterval(()=>{if(!busy){timer--;if(timer<0)timer=15}},1000);
+</script>
 </body>
 </html>

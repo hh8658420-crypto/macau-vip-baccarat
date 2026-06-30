@@ -5,78 +5,53 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="澳门VIP百家乐"/>
-<meta name="theme-color" content="#7c1018"/>
+<meta name="theme-color" content="#7b1119"/>
 <link rel="manifest" href="./manifest.json"/>
 <link rel="stylesheet" href="./css/app.css"/>
-<title>澳门VIP百家乐 V7.1</title>
+<title>澳门VIP百家乐 Final</title>
 </head>
 <body>
 <div id="app">
-  <header class="top">
-    <button class="top-btn">‹</button>
-    <div class="brand">DB真人厅 · MACAU VIP</div>
-    <div class="wallet">余额 <b id="money">10,000</b></div>
-  </header>
+<header class="top"><button id="resetBtn">重置</button><b>MACAU VIP BACCARAT · FINAL</b><span>余额 <strong id="money">10,000</strong></span></header>
 
-  <main class="live">
-    <div class="camera-tags"><span>LIVE</span><span>1080P</span></div>
-    <div class="hall">
-      <div class="lamp l1"></div><div class="lamp l2"></div><div class="lamp l3"></div>
-      <div class="bg-table t1"></div><div class="bg-table t2"></div><div class="bg-table t3"></div>
-    </div>
-    <div class="dealer">
-      <div class="hair"></div><div class="face"><i></i><i></i><b></b></div><div class="neck"></div>
-      <div class="body"></div><div class="tie"></div><div class="arm a1"></div><div class="arm a2"></div>
-    </div>
-    <div class="felt">
-      <section class="mini-hand">
-        <h3>闲 PLAYER</h3>
-        <div id="pCards" class="cards"></div>
-        <strong id="pScore">0</strong>
-      </section>
-      <section class="mini-hand banker">
-        <h3>庄 BANKER</h3>
-        <div id="bCards" class="cards"></div>
-        <strong id="bScore">0</strong>
-      </section>
-    </div>
-    <div class="round-no">局号 GH<span id="roundNo">000001</span></div>
-    <div id="toast" class="toast"></div>
-  </main>
+<section class="live">
+  <div class="tag"><i>LIVE</i><i>1080P</i><i id="state">等待下注</i></div>
+  <div class="lamp a"></div><div class="lamp b"></div><div class="lamp c"></div>
+  <div class="bg t1"></div><div class="bg t2"></div><div class="bg t3"></div>
+  <div class="dealer">
+    <div class="hair"></div><div class="face"><em></em><em></em><small></small></div><div class="neck"></div>
+    <div class="body"></div><div class="tie"></div><div class="arm l"></div><div class="arm r"></div>
+  </div>
+  <div class="felt">
+    <div class="hand"><h3>闲 PLAYER</h3><div id="pCards" class="cards"></div><b id="pScore">0</b></div>
+    <div class="hand banker"><h3>庄 BANKER</h3><div id="bCards" class="cards"></div><b id="bScore">0</b></div>
+  </div>
+  <div class="round">局号 GH<span id="roundNo">000001</span>　<span id="shoeLeft">牌靴416</span></div>
+  <div id="toast" class="toast"></div>
+</section>
 
-  <section class="bet-panel">
-    <div id="timer" class="timer">15</div>
-    <div class="info-line"><span>限红：10 - 2,000,000</span><span id="shoeLeft">牌靴 416</span></div>
-    <div class="sidebets">
-      <button>小龙<b>1:14</b></button><button>大龙<b>1:30</b></button><button>龙虎斗<b>1:40</b></button><button>大老虎<b>1:50</b></button><button>小老虎<b>1:22</b></button>
-    </div>
-    <div class="mainbets">
-      <button class="bet player" data-bet="P"><small>下注 <b id="betP">0</b></small><em id="pctP">0%</em><strong>闲</strong><span>1:1</span></button>
-      <button class="bet tie" data-bet="T"><small>下注 <b id="betT">0</b></small><em id="pctT">0%</em><strong>和</strong><span>1:8</span></button>
-      <button class="bet banker" data-bet="B"><small>下注 <b id="betB">0</b></small><em id="pctB">0%</em><strong>庄</strong><span>1:0.95</span></button>
-    </div>
-    <div class="actions">
-      <button id="clearBtn">取消</button>
-      <button id="repeatBtn">重复</button>
-      <button id="doubleBtn">加倍</button>
-      <button id="dealBtn">开始发牌</button>
-    </div>
-  </section>
+<section class="betPanel">
+  <div class="timer" id="timer">15</div>
+  <div class="side"><button>对子<b>1:11</b></button><button>完美对子<b>1:25</b></button><button>任意对子<b>1:5</b></button><button>大<b>1:0.54</b></button><button>小<b>1:1.5</b></button></div>
+  <div class="bets">
+    <button class="bet P" data-bet="P"><small>下注 <b id="betP">0</b></small><i id="pctP">0%</i><strong>闲</strong><span>1:1</span></button>
+    <button class="bet T" data-bet="T"><small>下注 <b id="betT">0</b></small><i id="pctT">0%</i><strong>和</strong><span>1:8</span></button>
+    <button class="bet B" data-bet="B"><small>下注 <b id="betB">0</b></small><i id="pctB">0%</i><strong>庄</strong><span>1:0.95</span></button>
+  </div>
+  <div class="actions"><button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="doubleBtn">加倍</button><button id="dealBtn">开始发牌</button></div>
+</section>
 
-  <section class="chips">
-    <button class="chip active c10" data-chip="10">10</button>
-    <button class="chip c50" data-chip="50">50</button>
-    <button class="chip c100" data-chip="100">100</button>
-    <button class="chip c500" data-chip="500">500</button>
-    <button class="chip c1k" data-chip="1000">1K</button>
-    <button class="chip c5k" data-chip="5000">5K</button>
-  </section>
+<section class="chips">
+  <button class="chip active c10" data-chip="10">10</button><button class="chip c50" data-chip="50">50</button><button class="chip c100" data-chip="100">100</button><button class="chip c500" data-chip="500">500</button><button class="chip c1k" data-chip="1000">1K</button><button class="chip c5k" data-chip="5000">5K</button>
+</section>
 
-  <section class="roads">
-    <div class="road-head"><span class="red">庄 <b id="cntB">0</b></span><span class="blue">闲 <b id="cntP">0</b></span><span class="green">和 <b id="cntT">0</b></span><span class="profit">盈亏 <b id="profit">0</b></span></div>
-    <div class="bead" id="bead"></div>
-    <div class="big" id="bigRoad"></div>
-  </section>
+<section class="roads">
+  <div class="roadHead"><span class="red">庄 <b id="cntB">0</b></span><span class="blue">闲 <b id="cntP">0</b></span><span class="green">和 <b id="cntT">0</b></span><span class="profit">盈亏 <b id="profit">0</b></span></div>
+  <div class="tabs"><button class="on" data-tab="bead">珠盘路</button><button data-tab="big">大路</button><button data-tab="derived">三小路</button></div>
+  <div class="page show" id="page-bead"><div id="bead" class="bead"></div></div>
+  <div class="page" id="page-big"><div id="bigRoad" class="bigRoad"></div></div>
+  <div class="page" id="page-derived"><p>大眼路</p><div id="eyeRoad" class="derived"></div><p>小路</p><div id="smallRoad" class="derived"></div><p>曱甴路</p><div id="cockRoad" class="derived"></div></div>
+</section>
 </div>
 <script type="module" src="./js/app.js"></script>
 </body>

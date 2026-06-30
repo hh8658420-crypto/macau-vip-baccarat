@@ -1,9 +1,10 @@
 {
-  "name": "澳门VIP百家乐 V7",
+  "name": "澳门VIP百家乐 V7.1",
   "short_name": "VIP百家乐",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#090304",
-  "theme_color": "#7e1019",
+  "background_color": "#080203",
+  "theme_color": "#7c1018",
+  "orientation": "any",
   "icons": []
 }

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="澳门VIP百家乐">
 <meta name="theme-color" content="#7b1119">
-<title>澳门VIP百家乐 Rule Road Update</title>
+<title>澳门VIP百家乐 Flip Fix</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080203;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",Arial,sans-serif}
@@ -14,34 +14,34 @@ body{position:fixed;inset:0}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;background:#080203}
 .top{height:42px;background:linear-gradient(#fff,#eee);color:#222;display:flex;align-items:center;justify-content:space-between;padding:0 10px;box-shadow:0 2px 12px #0006;flex-shrink:0}
 .top button{border:0;background:#e8e8e8;border-radius:12px;padding:6px 10px;font-weight:900}.top b{font-size:13px}.top span{font-size:13px;background:#eee3d2;border-radius:14px;padding:4px 9px}.top strong{color:#a7111c}
-.live{position:relative;height:27vh;min-height:205px;overflow:hidden;background:linear-gradient(#dec8a4 0 42%,#9a735d 43%,#3a2422 100%);flex-shrink:0}
-.live:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 3px,transparent 3px 32px),radial-gradient(circle at 50% 2%,rgba(255,248,215,.72),transparent 25%)}
-.tag{position:absolute;left:10px;top:10px;z-index:5;display:flex;gap:6px}.tag i{font-style:normal;background:#0009;border-radius:10px;padding:4px 8px;font-size:11px}.tag i:first-child{color:#ff3442}
-.dealer{position:absolute;left:50%;bottom:45px;transform:translateX(-50%) scale(.68);width:205px;height:232px;z-index:3}.hair{position:absolute;left:45px;top:0;width:112px;height:78px;border-radius:56px 56px 26px 26px;background:linear-gradient(135deg,#20151a,#050505)}.face{position:absolute;left:60px;top:40px;width:84px;height:91px;border-radius:45%;background:linear-gradient(#f7d4c2,#dc9f91);box-shadow:0 6px 18px #0007}.face em{position:absolute;top:38px;width:10px;height:6px;background:#2a1115;border-radius:50%}.face em:first-child{left:23px}.face em:nth-child(2){right:23px}.face small{position:absolute;left:32px;bottom:20px;width:22px;height:8px;border-bottom:3px solid #c43a4a;border-radius:50%}.neck{position:absolute;left:87px;top:124px;width:32px;height:27px;background:#e4ad9d}.body{position:absolute;left:36px;top:142px;width:134px;height:90px;border-radius:32px 32px 12px 12px;background:linear-gradient(#fff,#e7e7e7)}.tie{position:absolute;left:79px;top:149px;width:48px;height:21px;background:#1b2e62;border-radius:50%}.arm{position:absolute;top:178px;width:92px;height:18px;background:#e6b19f;border-radius:12px}.arm.l{left:-2px;transform:rotate(13deg)}.arm.r{right:-2px;transform:rotate(-13deg)}
-.felt{position:absolute;left:50%;bottom:-38px;transform:translateX(-50%);width:94vw;height:132px;border-radius:50% 50% 0 0;background:radial-gradient(ellipse,#c0202d,#7c1119 70%);border:8px solid #c7a46b;box-shadow:0 -10px 30px #000a;display:flex;justify-content:center;gap:54px;padding-top:10px}
-.hand{text-align:center}.hand h3{margin:0;color:#48c9ff;font-size:13px}.hand.banker h3{color:#ffd088}.cards{height:48px;display:flex;gap:6px;justify-content:center;margin-top:4px}.card{width:34px;height:46px;border-radius:5px;background:#fff;color:#222;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px #0008;animation:deal .28s ease}.card.red{color:#d41724}@keyframes deal{from{transform:translateY(-70px) rotate(10deg);opacity:0}to{transform:none;opacity:1}}.hand b{font-size:20px}.round{position:absolute;left:10px;bottom:8px;font-size:12px;text-shadow:0 2px 3px #000}
-.toast{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);padding:10px 18px;border-radius:16px;background:#000d;border:1px solid #ffffff55;color:#ffd77f;font-size:24px;font-weight:900;opacity:0;white-space:nowrap;z-index:50}.toast.show{animation:pop 1.5s ease}@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.82)}20%,75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0}}
-.betPanel{height:250px;background:linear-gradient(#a61c29,#79111a);border-radius:18px 18px 0 0;margin-top:-8px;z-index:8;box-shadow:0 -5px 20px #0008;overflow:hidden;position:relative;flex-shrink:0}
-.info{height:32px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#ffd8d8;background:#7e1119cc;font-size:13px}
-.timer{position:absolute;left:50%;top:4px;transform:translateX(-50%);width:50px;height:50px;border-radius:50%;border:3px solid #f4cacf;background:#7c1018;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;z-index:2}
-.side{height:84px;display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid #ffffff22}.side button{text-align:center;border:0;border-right:1px solid #ffffff22;background:transparent;color:#ffe0e0;font-size:11px;position:relative;padding-top:9px}.side b{display:block;color:#ffd37a;margin-top:1px;font-size:16px}.side span{display:block;color:#f1c9c9;font-size:11px;margin-top:1px}.side small{display:block;color:#fff;font-size:10px;margin-top:1px}.side button:last-child{border:0}.side button.win{box-shadow:inset 0 0 22px #fff5;background:#ffffff12}
-.side .blue{color:#3ac8ff}.side .orange{color:#ffd06f}.side .redtxt{color:#ff9a7d}
-.bets{height:96px;display:grid;grid-template-columns:1fr .76fr 1fr}.bet{position:relative;border:0;border-right:1px solid #ffffff22;background:transparent;color:#fff}.bet:last-child{border:0}.bet small{position:absolute;top:7px;left:0;right:0;color:#ffe4d6}.bet i{position:absolute;right:12px;top:30px;width:42px;height:42px;border-radius:50%;background:#ffffff22;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px}.bet strong{display:block;font-size:42px}.bet span{font-size:18px;font-weight:900}.bet.P strong{color:#3ac8ff}.bet.T strong{color:#4ee47c}.bet.B strong{color:#ffd18d}.bet.win{box-shadow:inset 0 0 32px #fff6;background:#ffffff18}
-.actions{height:38px;display:grid;grid-template-columns:1fr 1fr 1fr}.actions button{border:0;border-right:1px solid #ffffff20;background:#650d14;color:#ffe1e1;font-size:16px;font-weight:900}.actions button:last-child{border:0}
-.chips{height:62px;background:#9f1722;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 5px 16px #0007;position:relative;z-index:10;flex-shrink:0}.chip{width:46px;height:46px;border-radius:50%;border:5px dashed #fff;color:#fff;font-weight:900;text-shadow:0 2px 4px #000;box-shadow:0 4px 8px #0007}.chip.active{transform:translateY(-7px);outline:3px solid #fff2a2}.c100{background:#8c40d4}.c200{background:#2aa6b8}.c1000{background:#7e35d8}.c2000{background:#137995}.c5000{background:#2d8cda}
-.roads{flex:1;min-height:245px;background:#fff;color:#111;position:relative;overflow:hidden;display:grid;grid-template-columns:34% 66%}
-.roadStats{position:absolute;left:0;right:0;top:0;height:38px;background:#282830;color:#fff;display:flex;align-items:center;gap:12px;padding:0 10px;font-size:13px;z-index:2}.roadStats span{display:flex;align-items:center;gap:4px}.dot{width:16px;height:16px;border-radius:50%;display:inline-block}.dr{background:#ef1e31}.db{background:#1676e8}.dg{background:#25be61}.profit{margin-left:auto;color:#ffd37a}
-.bead{padding:46px 6px 6px;display:grid;grid-template-columns:repeat(6,30px);grid-auto-rows:30px;gap:5px;align-content:start;border-right:1px solid #ddd;overflow:hidden}
-.rightRoad{padding-top:42px;display:flex;flex-direction:column;overflow:hidden}.bigRoad{height:58%;display:grid;grid-template-columns:repeat(16,20px);grid-auto-rows:20px;gap:4px;padding:6px 8px;align-content:start;background-image:linear-gradient(#eef0f6 1px,transparent 1px),linear-gradient(90deg,#eef0f6 1px,transparent 1px);background-size:24px 24px;overflow:hidden}.derivedWrap{height:42%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:3px 8px}.derivedBox{overflow:hidden}.derivedBox p{margin:0 0 2px;font-size:10px;font-weight:900}.derived{display:grid;grid-template-columns:repeat(8,10px);grid-auto-rows:10px;gap:3px}
-.cell{border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff}.cell.P{background:#1676e8}.cell.B{background:#ef1e31}.cell.T{background:#25be61}.cell.SEVEN{background:#1676e8;color:#fff}.ring{border-radius:50%;background:#fff;position:relative}.ring.P{border:3px solid #1676e8}.ring.B{border:3px solid #ef1e31}.ring.T{border:3px solid #25be61}.ring.seven:after{content:'7';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#1676e8;font-size:11px;font-weight:900}.mark{border-radius:50%;background:#fff}.mark.r{border:2px solid #ef1e31}.mark.b{border:2px solid #1676e8}
-@media(max-height:760px){.live{height:24vh;min-height:190px}.dealer{transform:translateX(-50%) scale(.58);bottom:36px}.felt{height:116px;padding-top:8px}.betPanel{height:242px}.roads{min-height:220px}.bead{grid-template-columns:repeat(6,28px);grid-auto-rows:28px}.bigRoad{grid-template-columns:repeat(16,18px);grid-auto-rows:18px}.chips{height:58px}.chip{width:44px;height:44px}}
+.live{position:relative;height:23vh;min-height:176px;overflow:hidden;background:linear-gradient(#dec8a4 0 42%,#9a735d 43%,#3a2422 100%);flex-shrink:0}
+.live:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 3px,transparent 3px 32px),radial-gradient(circle at 50% 0,rgba(255,248,215,.65),transparent 25%)}
+.tag{position:absolute;left:10px;top:8px;z-index:5;display:flex;gap:6px}.tag i{font-style:normal;background:#0009;border-radius:10px;padding:4px 8px;font-size:10px}.tag i:first-child{color:#ff3442}
+.dealer{position:absolute;left:50%;bottom:42px;transform:translateX(-50%) scale(.52);width:205px;height:232px;z-index:2;opacity:.92}.hair{position:absolute;left:45px;top:0;width:112px;height:78px;border-radius:56px 56px 26px 26px;background:linear-gradient(135deg,#20151a,#050505)}.face{position:absolute;left:60px;top:40px;width:84px;height:91px;border-radius:45%;background:linear-gradient(#f7d4c2,#dc9f91);box-shadow:0 6px 18px #0007}.face em{position:absolute;top:38px;width:10px;height:6px;background:#2a1115;border-radius:50%}.face em:first-child{left:23px}.face em:nth-child(2){right:23px}.face small{position:absolute;left:32px;bottom:20px;width:22px;height:8px;border-bottom:3px solid #c43a4a;border-radius:50%}.neck{position:absolute;left:87px;top:124px;width:32px;height:27px;background:#e4ad9d}.body{position:absolute;left:36px;top:142px;width:134px;height:90px;border-radius:32px 32px 12px 12px;background:linear-gradient(#fff,#e7e7e7)}.tie{position:absolute;left:79px;top:149px;width:48px;height:21px;background:#1b2e62;border-radius:50%}.arm{position:absolute;top:178px;width:92px;height:18px;background:#e6b19f;border-radius:12px}.arm.l{left:-2px;transform:rotate(13deg)}.arm.r{right:-2px;transform:rotate(-13deg)}
+.felt{position:absolute;left:50%;bottom:-31px;transform:translateX(-50%);width:90vw;height:112px;border-radius:50% 50% 0 0;background:radial-gradient(ellipse,#c0202d,#7c1119 70%);border:6px solid #c7a46b;box-shadow:0 -8px 22px #000a;display:flex;justify-content:center;gap:44px;padding-top:10px;z-index:4}
+.hand{text-align:center;min-width:116px}.hand h3{margin:0;color:#48c9ff;font-size:12px;line-height:14px;text-align:center}.hand.banker h3{color:#ffd088}.cards{height:46px;display:flex;gap:5px;justify-content:center;margin-top:4px}.card{width:31px;height:42px;border-radius:5px;background:#fff;color:#222;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px #0008;animation:deal .45s ease}.card.back{background:linear-gradient(135deg,#ede8f5,#765a9b);color:#fff;border:2px solid #fff}.card.red{color:#d41724}@keyframes deal{from{transform:translateY(-52px) rotate(8deg);opacity:0}to{transform:none;opacity:1}}.hand b{font-size:18px;display:block;text-align:center}
+.round{position:absolute;left:10px;bottom:6px;font-size:11px;text-shadow:0 2px 3px #000;z-index:6}
+.toast{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);padding:9px 16px;border-radius:16px;background:#000d;border:1px solid #ffffff55;color:#ffd77f;font-size:22px;font-weight:900;opacity:0;white-space:nowrap;z-index:50}.toast.show{animation:pop 1.5s ease}@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.82)}20%,75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0}}
+.betPanel{height:262px;background:linear-gradient(#a61c29,#79111a);border-radius:16px 16px 0 0;margin-top:-6px;z-index:8;box-shadow:0 -5px 20px #0008;overflow:hidden;position:relative;flex-shrink:0}
+.info{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#ffd8d8;background:#7e1119cc;font-size:12px;text-align:center}
+.timer{position:absolute;left:50%;top:3px;transform:translateX(-50%);width:50px;height:50px;border-radius:50%;border:3px solid #f4cacf;background:#7c1018;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;z-index:2;text-align:center}
+.side{height:88px;display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid #ffffff22}.side button{text-align:center;border:0;border-right:1px solid #ffffff22;background:transparent;color:#ffe0e0;font-size:10px;position:relative;padding:8px 2px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.side b{display:block;color:#ffd37a;font-size:15px;line-height:17px;text-align:center}.side span{display:block;color:#f1c9c9;font-size:10px;line-height:12px;margin-top:2px;text-align:center}.side small{display:block;color:#fff;font-size:10px;margin-top:auto;text-align:center}.side button:last-child{border:0}.side button.win{box-shadow:inset 0 0 22px #fff5;background:#ffffff12}.side .blue{color:#3ac8ff}.side .orange{color:#ffd06f}.side .redtxt{color:#ff9a7d}
+.bets{height:96px;display:grid;grid-template-columns:1fr .76fr 1fr}.bet{position:relative;border:0;border-right:1px solid #ffffff22;background:transparent;color:#fff;text-align:center}.bet:last-child{border:0}.bet small{position:absolute;top:7px;left:0;right:0;color:#ffe4d6;text-align:center}.bet i{position:absolute;right:12px;top:30px;width:42px;height:42px;border-radius:50%;background:#ffffff22;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;text-align:center}.bet strong{display:block;font-size:42px;line-height:44px;text-align:center}.bet span{font-size:18px;font-weight:900;text-align:center}.bet.P strong{color:#3ac8ff}.bet.T strong{color:#4ee47c}.bet.B strong{color:#ffd18d}.bet.win{box-shadow:inset 0 0 32px #fff6;background:#ffffff18}
+.actions{height:48px;display:grid;grid-template-columns:1fr 1fr 1fr 1.25fr}.actions button{border:0;border-right:1px solid #ffffff20;background:#650d14;color:#ffe1e1;font-size:15px;font-weight:900;text-align:center}.actions button:last-child{border:0;background:linear-gradient(#30242a,#161012);color:#ffd9bd}.actions button:disabled{opacity:.45}
+.chips{height:58px;background:#9f1722;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 5px 16px #0007;position:relative;z-index:10;flex-shrink:0}.chip{width:44px;height:44px;border-radius:50%;border:5px dashed #fff;color:#fff;font-weight:900;text-shadow:0 2px 4px #000;box-shadow:0 4px 8px #0007;text-align:center}.chip.active{transform:translateY(-7px);outline:3px solid #fff2a2}.c100{background:#8c40d4}.c200{background:#2aa6b8}.c1000{background:#7e35d8}.c2000{background:#137995}.c5000{background:#2d8cda}
+.roads{flex:1;min-height:260px;background:#fff;color:#111;position:relative;overflow:hidden;display:grid;grid-template-columns:34% 66%}
+.roadStats{position:absolute;left:0;right:0;top:0;height:36px;background:#282830;color:#fff;display:flex;align-items:center;gap:10px;padding:0 8px;font-size:12px;z-index:2}.roadStats span{display:flex;align-items:center;gap:4px}.dot{width:15px;height:15px;border-radius:50%;display:inline-block}.dr{background:#ef1e31}.db{background:#1676e8}.dg{background:#25be61}.profit{margin-left:auto;color:#ffd37a}
+.bead{padding:44px 6px 6px;display:grid;grid-template-columns:repeat(6,30px);grid-auto-rows:30px;gap:5px;align-content:start;border-right:1px solid #ddd;overflow:hidden}
+.rightRoad{padding-top:40px;display:flex;flex-direction:column;overflow:hidden}.bigRoad{height:60%;display:grid;grid-template-columns:repeat(16,20px);grid-auto-rows:20px;gap:4px;padding:6px 8px;align-content:start;background-image:linear-gradient(#eef0f6 1px,transparent 1px),linear-gradient(90deg,#eef0f6 1px,transparent 1px);background-size:24px 24px;overflow:hidden}.derivedWrap{height:40%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:3px 8px}.derivedBox{overflow:hidden}.derivedBox p{margin:0 0 2px;font-size:10px;font-weight:900;text-align:left}.derived{display:grid;grid-template-columns:repeat(8,10px);grid-auto-rows:10px;gap:3px}
+.cell{border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;text-align:center}.cell.P{background:#1676e8}.cell.B{background:#ef1e31}.cell.T{background:#25be61}.cell.SEVEN{background:#1676e8;color:#fff}.ring{border-radius:50%;background:#fff;position:relative}.ring.P{border:3px solid #1676e8}.ring.B{border:3px solid #ef1e31}.ring.T{border:3px solid #25be61}.ring.seven:after{content:'7';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#1676e8;font-size:11px;font-weight:900}.mark{border-radius:50%;background:#fff}.mark.r{border:2px solid #ef1e31}.mark.b{border:2px solid #1676e8}
+@media(max-height:760px){.live{height:21vh;min-height:164px}.dealer{transform:translateX(-50%) scale(.48);bottom:34px}.felt{height:104px;padding-top:8px}.betPanel{height:252px}.roads{min-height:245px}.bead{grid-template-columns:repeat(6,28px);grid-auto-rows:28px}.bigRoad{grid-template-columns:repeat(16,18px);grid-auto-rows:18px}.chips{height:54px}.chip{width:42px;height:42px}}
 </style>
 </head>
 <body>
 <div id="app">
 <header class="top"><button id="resetBtn">重置</button><b>MACAU VIP BACCARAT</b><span>余额 <strong id="money">10,000</strong></span></header>
 <section class="live">
-  <div class="tag"><i>LIVE</i><i>RULE</i><i id="state">等待下注</i></div>
+  <div class="tag"><i>LIVE</i><i>FLIP</i><i id="state">等待下注</i></div>
   <div class="dealer"><div class="hair"></div><div class="face"><em></em><em></em><small></small></div><div class="neck"></div><div class="body"></div><div class="tie"></div><div class="arm l"></div><div class="arm r"></div></div>
   <div class="felt">
     <div class="hand"><h3>闲 PLAYER</h3><div id="pCards" class="cards"></div><b id="pScore">0</b></div>
@@ -55,9 +55,9 @@ body{position:fixed;inset:0}
   <div class="timer" id="timer">15</div>
   <div class="side">
     <button class="sideBet" data-side="PP"><b class="blue">闲对</b><span>1:11</span><small id="betPP">0</small></button>
-    <button class="sideBet" data-side="Lucky7"><b class="blue">幸运七</b><span>闲7点赢<br>2张1:6 / 3张1:15</span><small id="betLucky7">0</small></button>
+    <button class="sideBet" data-side="Lucky7"><b class="blue">幸运七</b><span>闲7赢<br>2张1:6 / 3张1:15</span><small id="betLucky7">0</small></button>
     <button class="sideBet" data-side="Super7"><b class="orange">超级幸运七</b><span>闲7赢庄6<br>4张1:30/5张1:40/6张1:100</span><small id="betSuper7">0</small></button>
-    <button class="sideBet" data-side="Lucky6"><b class="redtxt">幸运六</b><span>庄6点赢<br>2张1:12 / 3张1:20</span><small id="betLucky6">0</small></button>
+    <button class="sideBet" data-side="Lucky6"><b class="redtxt">幸运六</b><span>庄6赢<br>2张1:12 / 3张1:20</span><small id="betLucky6">0</small></button>
     <button class="sideBet" data-side="BP"><b class="redtxt">庄对</b><span>1:11</span><small id="betBP">0</small></button>
   </div>
   <div class="bets">
@@ -65,7 +65,7 @@ body{position:fixed;inset:0}
     <button class="bet T" data-bet="T"><small>下注 <b id="betT">0</b></small><i id="pctT">0%</i><strong>和</strong><span>1:8</span></button>
     <button class="bet B" data-bet="B"><small>下注 <b id="betB">0</b></small><i id="pctB">0%</i><strong>庄</strong><span>1:0.95</span></button>
   </div>
-  <div class="actions"><button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="doubleBtn">加倍</button></div>
+  <div class="actions"><button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="doubleBtn">加倍</button><button id="openBtn" disabled>开牌</button></div>
 </section>
 <section class="chips">
   <button class="chip active c100" data-chip="100">100</button><button class="chip c200" data-chip="200">200</button><button class="chip c1000" data-chip="1000">1000</button><button class="chip c2000" data-chip="2000">2000</button><button class="chip c5000" data-chip="5000">5000</button>
@@ -89,26 +89,19 @@ const suits=['♠','♥','♦','♣'], ranks=['A','2','3','4','5','6','7','8','9
 let money=10000, chip=100;
 let bets={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};
 let lastBet={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};
-let shoe=[], hist=[], busy=false, round=1, timer=15, profit=0;
-function save(){localStorage.macauRuleRoadUpdate=JSON.stringify({money,chip,bets,lastBet,shoe,hist,round,profit})}
-function load(){try{let s=JSON.parse(localStorage.macauRuleRoadUpdate||'{}');if(s.money!=null){money=s.money;chip=s.chip||chip;bets={...bets,...(s.bets||{})};lastBet={...lastBet,...(s.lastBet||{})};shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();render();setInterval(countdown,1000)}
+let shoe=[], hist=[], busy=false, awaitingOpen=false, round=1, timer=15, profit=0;
+let pendingP=[], pendingB=[];
+function save(){localStorage.macauFlipFix=JSON.stringify({money,chip,bets,lastBet,shoe,hist,round,profit})}
+function load(){try{let s=JSON.parse(localStorage.macauFlipFix||'{}');if(s.money!=null){money=s.money;chip=s.chip||chip;bets={...bets,...(s.bets||{})};lastBet={...lastBet,...(s.lastBet||{})};shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();render();setInterval(countdown,1000)}
 function newShoe(){shoe=[];for(let d=0;d<8;d++)for(let s of suits)for(let r of ranks)shoe.push({r,s});for(let i=shoe.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shoe[i],shoe[j]]=[shoe[j],shoe[i]]}}
 function val(c){return c.r==='A'?1:('10JQK'.includes(c.r)?0:+c.r)}
 function total(h){return h.reduce((a,c)=>a+val(c),0)%10}
 function draw(){if(shoe.length<60)newShoe();return shoe.pop()}
-function thirdRule(bankTwoTotal, playerThirdValue){
-  if(playerThirdValue==null) return bankTwoTotal<=5;
-  if(bankTwoTotal<=2) return true;
-  if(bankTwoTotal===3) return playerThirdValue!==8;
-  if(bankTwoTotal===4) return playerThirdValue>=2 && playerThirdValue<=7;
-  if(bankTwoTotal===5) return playerThirdValue>=4 && playerThirdValue<=7;
-  if(bankTwoTotal===6) return playerThirdValue===6 || playerThirdValue===7;
-  return false;
-}
-function card(c){let red=c.s==='♥'||c.s==='♦';return `<div class="card ${red?'red':''}">${c.r}${c.s}</div>`}
+function thirdRule(bankTwoTotal, playerThirdValue){if(playerThirdValue==null)return bankTwoTotal<=5;if(bankTwoTotal<=2)return true;if(bankTwoTotal===3)return playerThirdValue!==8;if(bankTwoTotal===4)return playerThirdValue>=2&&playerThirdValue<=7;if(bankTwoTotal===5)return playerThirdValue>=4&&playerThirdValue<=7;if(bankTwoTotal===6)return playerThirdValue===6||playerThirdValue===7;return false}
+function card(c,back=false){if(back)return `<div class="card back">◆</div>`;let red=c.s==='♥'||c.s==='♦';return `<div class="card ${red?'red':''}">${c.r}${c.s}</div>`}
 function wait(ms){return new Promise(r=>setTimeout(r,ms))}
 function toast(t){let el=$('toast');el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}}
-function countdown(){if(busy)return;timer--;if(timer<=0){timer=0;$('timer').textContent=timer;autoDeal()}else $('timer').textContent=timer}
+function countdown(){if(busy||awaitingOpen)return;timer--;if(timer<=0){timer=0;$('timer').textContent=timer;dealDark()}else $('timer').textContent=timer}
 function totalBet(){return Object.values(bets).reduce((a,b)=>a+b,0)}
 function resetBets(){bets={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0}}
 function render(){
@@ -130,36 +123,47 @@ function roads(){
   ['eyeRoad','smallRoad','cockRoad'].forEach((id,idx)=>{let arr=colors.slice(idx).slice(-48).map(x=>`<div class="mark ${x}"></div>`);while(arr.length<48)arr.push('<div></div>');$(id).innerHTML=arr.join('')});
 }
 function tap(el,fn){el.addEventListener('click',fn);el.addEventListener('touchend',e=>{e.preventDefault();fn(e)},{passive:false})}
-document.querySelectorAll('.chip').forEach(el=>tap(el,()=>{chip=+el.dataset.chip;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');save()}));
+document.querySelectorAll('.chip').forEach(el=>tap(el,()=>{if(awaitingOpen||busy)return;chip=+el.dataset.chip;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');save()}));
 document.querySelectorAll('.bet').forEach(el=>tap(el,()=>place(el.dataset.bet)));
 document.querySelectorAll('.sideBet').forEach(el=>tap(el,()=>place(el.dataset.side)));
-function place(k){if(busy)return;if(money<chip)return toast('余额不足');bets[k]+=chip;money-=chip;render();save()}
-tap($('clearBtn'),()=>{if(busy)return;money+=totalBet();resetBets();render();save()});
-tap($('repeatBtn'),()=>{if(busy)return;let s=Object.values(lastBet).reduce((a,b)=>a+b,0);if(!s)return toast('没有上一局');if(money<s)return toast('余额不足');money-=s;bets={...lastBet};render();save()});
-tap($('doubleBtn'),()=>{if(busy)return;let s=totalBet();if(!s)return toast('请先下注');if(money<s)return toast('余额不足');money-=s;Object.keys(bets).forEach(k=>bets[k]*=2);render();save()});
-tap($('resetBtn'),()=>{if(confirm('重置全部数据？')){localStorage.removeItem('macauRuleRoadUpdate');location.reload()}});
-async function autoDeal(){
-  if(busy)return;busy=true;$('state').textContent='结算中';
+function place(k){if(busy||awaitingOpen)return;if(money<chip)return toast('余额不足');bets[k]+=chip;money-=chip;render();save()}
+tap($('clearBtn'),()=>{if(busy||awaitingOpen)return;money+=totalBet();resetBets();render();save()});
+tap($('repeatBtn'),()=>{if(busy||awaitingOpen)return;let s=Object.values(lastBet).reduce((a,b)=>a+b,0);if(!s)return toast('没有上一局');if(money<s)return toast('余额不足');money-=s;bets={...lastBet};render();save()});
+tap($('doubleBtn'),()=>{if(busy||awaitingOpen)return;let s=totalBet();if(!s)return toast('请先下注');if(money<s)return toast('余额不足');money-=s;Object.keys(bets).forEach(k=>bets[k]*=2);render();save()});
+tap($('resetBtn'),()=>{if(confirm('重置全部数据？')){localStorage.removeItem('macauFlipFix');location.reload()}});
+tap($('openBtn'),()=>openCards());
+async function dealDark(){
+  if(busy||awaitingOpen)return;
+  busy=true;$('state').textContent='已发暗牌';
   document.querySelectorAll('.bet,.sideBet').forEach(x=>x.classList.remove('win'));
-  let stake=totalBet();lastBet={...bets};
-  $('pCards').innerHTML='';$('bCards').innerHTML='';$('pScore').textContent='0';$('bScore').textContent='0';
-  let P=[],B=[];
-  P.push(draw());await show(P,B);B.push(draw());await show(P,B);P.push(draw());await show(P,B);B.push(draw());await show(P,B);
+  lastBet={...bets};
+  pendingP=[];pendingB=[];
+  $('pCards').innerHTML='';$('bCards').innerHTML='';$('pScore').textContent='?';$('bScore').textContent='?';
+  pendingP.push(draw());await showBack(pendingP,pendingB);
+  pendingB.push(draw());await showBack(pendingP,pendingB);
+  pendingP.push(draw());await showBack(pendingP,pendingB);
+  pendingB.push(draw());await showBack(pendingP,pendingB);
+  busy=false;awaitingOpen=true;$('openBtn').disabled=false;toast('请开牌');
+}
+async function openCards(){
+  if(!awaitingOpen||busy)return;
+  busy=true;$('openBtn').disabled=true;$('state').textContent='开牌中';
+  let P=[...pendingP],B=[...pendingB];
+  await reveal(P.slice(0,1),B.slice(0,0));await reveal(P.slice(0,1),B.slice(0,1));await reveal(P.slice(0,2),B.slice(0,1));await reveal(P.slice(0,2),B.slice(0,2));
   let pt=total(P),bt=total(B),p3=null;
   if(!(pt>=8||bt>=8)){
-    if(pt<=5){let c=draw();P.push(c);p3=val(c);await show(P,B)}
-    if(thirdRule(total(B.slice(0,2)),p3)){B.push(draw());await show(P,B)}
+    if(pt<=5){let c=draw();P.push(c);p3=val(c);await reveal(P,B)}
+    if(thirdRule(total(B.slice(0,2)),p3)){B.push(draw());await reveal(P,B)}
   }
   pt=total(P);bt=total(B);
   let res=pt>bt?'P':bt>pt?'B':'T';
-  let payout=settle(P,B,res,pt,bt);
-  money+=payout;
-  let delta=payout-stake;profit+=delta;
+  let stake=totalBet(), payout=settle(P,B,res,pt,bt);
+  money+=payout;let delta=payout-stake;profit+=delta;
   let is7=(res==='P'&&pt===7);
   hist.push({res,pt,bt,delta,is7});if(hist.length>240)hist.shift();
   markWins(P,B,res,pt,bt);
   toast((res==='P'?'闲赢':res==='B'?'庄赢':'和局')+' '+(delta>=0?'+':'')+delta);
-  resetBets();round++;timer=15;busy=false;$('state').textContent='等待下注';render();save();
+  resetBets();round++;timer=15;busy=false;awaitingOpen=false;$('state').textContent='等待下注';pendingP=[];pendingB=[];render();save();
 }
 function settle(P,B,res,pt,bt){
   let p=0;
@@ -167,22 +171,11 @@ function settle(P,B,res,pt,bt){
   if(res==='B')p+=Math.floor(bets.B*1.95);
   if(res==='T')p+=bets.T*9+bets.P+bets.B;
   let pp=P[0]&&P[1]&&P[0].r===P[1].r, bp=B[0]&&B[1]&&B[0].r===B[1].r;
-  if(pp)p+=bets.PP*12;
-  if(bp)p+=bets.BP*12;
+  if(pp)p+=bets.PP*12;if(bp)p+=bets.BP*12;
   let cardCount=P.length+B.length;
-  if(res==='P' && pt===7){
-    if(P.length===2)p+=bets.Lucky7*7;       // 1:6 + 本金
-    if(P.length===3)p+=bets.Lucky7*16;      // 1:15 + 本金
-  }
-  if(res==='P' && pt===7 && bt===6){
-    if(cardCount===4)p+=bets.Super7*31;
-    else if(cardCount===5)p+=bets.Super7*41;
-    else if(cardCount===6)p+=bets.Super7*101;
-  }
-  if(res==='B' && bt===6){
-    if(B.length===2)p+=bets.Lucky6*13;
-    if(B.length===3)p+=bets.Lucky6*21;
-  }
+  if(res==='P'&&pt===7){if(P.length===2)p+=bets.Lucky7*7;if(P.length===3)p+=bets.Lucky7*16}
+  if(res==='P'&&pt===7&&bt===6){if(cardCount===4)p+=bets.Super7*31;else if(cardCount===5)p+=bets.Super7*41;else if(cardCount===6)p+=bets.Super7*101}
+  if(res==='B'&&bt===6){if(B.length===2)p+=bets.Lucky6*13;if(B.length===3)p+=bets.Lucky6*21}
   return p;
 }
 function markWins(P,B,res,pt,bt){
@@ -194,7 +187,8 @@ function markWins(P,B,res,pt,bt){
   if(res==='P'&&pt===7&&bt===6)document.querySelector('[data-side="Super7"]').classList.add('win');
   if(res==='B'&&bt===6)document.querySelector('[data-side="Lucky6"]').classList.add('win');
 }
-async function show(P,B){$('pCards').innerHTML=P.map(card).join('');$('bCards').innerHTML=B.map(card).join('');$('pScore').textContent=P.length?total(P):0;$('bScore').textContent=B.length?total(B):0;await wait(420)}
+async function showBack(P,B){$('pCards').innerHTML=P.map(()=>card(null,true)).join('');$('bCards').innerHTML=B.map(()=>card(null,true)).join('');await wait(650)}
+async function reveal(P,B){$('pCards').innerHTML=P.map(c=>card(c,false)).join('');$('bCards').innerHTML=B.map(c=>card(c,false)).join('');$('pScore').textContent=P.length?total(P):'?';$('bScore').textContent=B.length?total(B):'?';await wait(850)}
 load();
 </script>
 </body>

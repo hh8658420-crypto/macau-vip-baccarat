@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="澳门VIP百家乐" />
+  <meta name="theme-color" content="#7e1019" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./css/app.css" />
+  <title>澳门VIP百家乐 V7</title>
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <button class="ghost">‹</button>
+      <div class="title">Macau VIP Baccarat</div>
+      <div class="balance">余额 <b id="money">10,000</b></div>
+    </header>
+
+    <section class="live">
+      <div class="room-lights"></div>
+      <div class="dealer">
+        <div class="hair"></div><div class="face"></div><div class="neck"></div>
+        <div class="body"></div><div class="bow"></div>
+        <div class="arm left"></div><div class="arm right"></div>
+      </div>
+      <div class="table">
+        <div class="hand player"><h3>闲</h3><div id="pCards" class="cards"></div><span id="pScore">0</span></div>
+        <div class="hand banker"><h3>庄</h3><div id="bCards" class="cards"></div><span id="bScore">0</span></div>
+      </div>
+      <div class="round">局号 GH<span id="roundNo">000001</span></div>
+      <div id="toast" class="toast"></div>
+    </section>
+
+    <section class="bet-panel">
+      <div class="timer" id="timer">15</div>
+      <div class="sidebets">
+        <div>小龙<br><b>1:14</b></div><div>大龙<br><b>1:30</b></div><div>龙虎斗<br><b>1:40</b></div><div>大老虎<br><b>1:50</b></div><div>小老虎<br><b>1:22</b></div>
+      </div>
+      <div class="mainbets">
+        <button class="bet player" data-bet="P"><small>下注 <b id="betP">0</b></small><strong>闲</strong><em>1:1</em></button>
+        <button class="bet tie" data-bet="T"><small>下注 <b id="betT">0</b></small><strong>和</strong><em>1:8</em></button>
+        <button class="bet banker" data-bet="B"><small>下注 <b id="betB">0</b></small><strong>庄</strong><em>1:0.95</em></button>
+      </div>
+      <div class="bet-actions">
+        <button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="dealBtn">开始发牌</button>
+      </div>
+    </section>
+
+    <section class="chips">
+      <button class="chip active" data-chip="10">10</button>
+      <button class="chip" data-chip="50">50</button>
+      <button class="chip" data-chip="100">100</button>
+      <button class="chip" data-chip="500">500</button>
+      <button class="chip" data-chip="1000">1K</button>
+      <button class="chip" data-chip="5000">5K</button>
+    </section>
+
+    <section class="roads">
+      <div class="road-head"><span class="r">庄 <b id="cntB">0</b></span><span class="b">闲 <b id="cntP">0</b></span><span class="g">和 <b id="cntT">0</b></span></div>
+      <div id="bead" class="bead"></div>
+      <div id="bigRoad" class="big-road"></div>
+    </section>
+  </div>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

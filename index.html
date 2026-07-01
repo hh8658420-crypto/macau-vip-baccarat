@@ -1,322 +1,84 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="澳门VIP百家乐">
-<meta name="theme-color" content="#7b1119">
-<title>澳门VIP百家乐 VIP Effects Pro</title>
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080203;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",Arial,sans-serif}
-body{position:fixed;inset:0}
-#app{position:fixed;inset:0;display:flex;flex-direction:column;background:#080203}
-.top{height:40px;background:linear-gradient(#fff,#eee);color:#222;display:flex;align-items:center;justify-content:space-between;padding:0 9px;box-shadow:0 2px 12px #0006;flex-shrink:0}
-.top button{border:0;background:#e8e8e8;border-radius:12px;padding:5px 9px;font-weight:900}.top b{font-size:12px}.top span{font-size:12px;background:#eee3d2;border-radius:14px;padding:4px 8px}.top strong{color:#a7111c}
-.live{position:relative;height:27vh;min-height:205px;overflow:hidden;background:linear-gradient(#dec8a4 0 42%,#9a735d 43%,#3a2422 100%);flex-shrink:0}
-.live:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 3px,transparent 3px 32px),radial-gradient(circle at 50% 0,rgba(255,248,215,.62),transparent 25%)}
-.tag{position:absolute;left:8px;top:7px;z-index:5;display:flex;gap:5px}.tag i{font-style:normal;background:#0009;border-radius:10px;padding:3px 7px;font-size:10px}.tag i:first-child{color:#ff3442}
-.dealer{position:absolute;left:50%;bottom:57px;transform:translateX(-50%) scale(.48);width:205px;height:232px;z-index:1;opacity:.88}.hair{position:absolute;left:45px;top:0;width:112px;height:78px;border-radius:56px 56px 26px 26px;background:linear-gradient(135deg,#20151a,#050505)}.face{position:absolute;left:60px;top:40px;width:84px;height:91px;border-radius:45%;background:linear-gradient(#f7d4c2,#dc9f91);box-shadow:0 6px 18px #0007}.face em{position:absolute;top:38px;width:10px;height:6px;background:#2a1115;border-radius:50%}.face em:first-child{left:23px}.face em:nth-child(2){right:23px}.face small{position:absolute;left:32px;bottom:20px;width:22px;height:8px;border-bottom:3px solid #c43a4a;border-radius:50%}.neck{position:absolute;left:87px;top:124px;width:32px;height:27px;background:#e4ad9d}.body{position:absolute;left:36px;top:142px;width:134px;height:90px;border-radius:32px 32px 12px 12px;background:linear-gradient(#fff,#e7e7e7)}.tie{position:absolute;left:79px;top:149px;width:48px;height:21px;background:#1b2e62;border-radius:50%}.arm{position:absolute;top:178px;width:92px;height:18px;background:#e6b19f;border-radius:12px}.arm.l{left:-2px;transform:rotate(13deg)}.arm.r{right:-2px;transform:rotate(-13deg)}
-.felt{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);width:88vw;height:108px;border-radius:50% 50% 0 0;background:radial-gradient(ellipse,#c0202d,#7c1119 70%);border:5px solid #c7a46b;box-shadow:0 -8px 22px #000a;z-index:3}
-.dealCenter{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);z-index:7;width:330px;max-width:94vw;display:grid;grid-template-columns:1fr 1fr;gap:18px;pointer-events:none}
-.hand{text-align:center;min-width:0;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:5px 4px 5px}.hand h3{margin:0;color:#48c9ff;font-size:11px;line-height:13px;text-align:center}.hand.banker h3{color:#ffd088}.cards{height:50px;display:flex;gap:5px;justify-content:center;margin-top:3px}.card{width:35px;height:47px;border-radius:6px;background:#fff;color:#222;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px #0008;transform-style:preserve-3d}.card.back{background:linear-gradient(135deg,#f0eaf6,#775aa0);color:#fff;border:2px solid #fff}.card.red{color:#d41724}.card.new{animation:deal .55s ease}.card.flip{animation:flip .65s ease}@keyframes deal{from{transform:translateY(-48px) rotate(8deg);opacity:0}to{transform:none;opacity:1}}@keyframes flip{0%{transform:rotateY(0deg)}45%{transform:rotateY(90deg)}55%{transform:rotateY(90deg)}100%{transform:rotateY(0deg)}}.hand b{font-size:16px;display:block;text-align:center;line-height:16px}
-.round{position:absolute;left:8px;bottom:5px;font-size:10px;text-shadow:0 2px 3px #000;z-index:6}
-.toast{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);padding:8px 14px;border-radius:16px;background:#000d;border:1px solid #ffffff55;color:#ffd77f;font-size:20px;font-weight:900;opacity:0;white-space:nowrap;z-index:50}.toast.show{animation:pop 1.5s ease}@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.82)}20%,75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0}}
-.betPanel{height:252px;background:linear-gradient(#a61c29,#79111a);border-radius:15px 15px 0 0;margin-top:-5px;z-index:8;box-shadow:0 -5px 20px #0008;overflow:hidden;position:relative;flex-shrink:0}
-.info{height:27px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;color:#ffd8d8;background:#7e1119cc;font-size:11px;text-align:center}
-.timer{position:absolute;left:50%;top:1px;transform:translateX(-50%);width:45px;height:45px;border-radius:50%;border:3px solid #f4cacf;background:#7c1018;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;z-index:2;text-align:center}
-.side{height:78px;display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid #ffffff22}.side button{text-align:center;border:0;border-right:1px solid #ffffff22;background:transparent;color:#ffe0e0;font-size:9px;position:relative;padding:5px 2px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.side b{display:block;color:#ffd37a;font-size:12px;line-height:14px;text-align:center}.side span{display:block;color:#f1c9c9;font-size:8px;line-height:10px;margin-top:1px;text-align:center}.side small{display:none}.side button:last-child{border:0}.side button.win{box-shadow:inset 0 0 22px #fff5;background:#ffffff12}.side .blue{color:#3ac8ff}.side .orange{color:#ffd06f}.side .redtxt{color:#ff9a7d}
-.chipStack{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);height:22px;max-width:96%;display:flex;align-items:flex-end;justify-content:center;gap:2px;pointer-events:none}.miniChip{min-width:22px;height:22px;border-radius:50%;background:#b77918;border:3px dashed #fff;color:#fff;font-size:7px;font-weight:900;display:flex;align-items:center;justify-content:center;text-shadow:0 1px 2px #000;box-shadow:0 2px 5px #0008;margin-left:-4px}.miniChip:first-child{margin-left:0}.m100{background:#8c40d4}.m200{background:#2aa6b8}.m1000{background:#7e35d8}.m2000{background:#137995}.m5000{background:#2d8cda}
-.bets{height:98px;display:grid;grid-template-columns:1fr .76fr 1fr}.bet{position:relative;border:0;border-right:1px solid #ffffff22;background:transparent;color:#fff;text-align:center}.bet:last-child{border:0}.bet small{position:absolute;top:5px;left:0;right:0;color:#ffe4d6;text-align:center;font-size:10px}.bet i{position:absolute;right:9px;top:27px;width:34px;height:34px;border-radius:50%;background:#ffffff22;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:10px;text-align:center}.bet strong{display:block;font-size:34px;line-height:38px;text-align:center}.bet span{font-size:15px;font-weight:900;text-align:center}.bet.P strong{color:#3ac8ff}.bet.T strong{color:#4ee47c}.bet.B strong{color:#ffd18d}.bet.win{box-shadow:inset 0 0 32px #fff6;background:#ffffff18}
-.actions{height:49px;display:grid;grid-template-columns:1fr 1fr 1fr}.actions button{border:0;border-right:1px solid #ffffff20;background:#650d14;color:#ffe1e1;font-size:14px;font-weight:900;text-align:center}.actions button:last-child{border:0}.actions button:disabled{opacity:.45}
-.chips{height:56px;background:#9f1722;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 5px 16px #0007;position:relative;z-index:10;flex-shrink:0}.chip{width:43px;height:43px;border-radius:50%;border:5px dashed #fff;color:#fff;font-weight:900;text-shadow:0 2px 4px #000;box-shadow:0 4px 8px #0007;text-align:center;font-size:11px}.chip.active{transform:translateY(-7px);outline:3px solid #fff2a2}.c100{background:#8c40d4}.c200{background:#2aa6b8}.c1000{background:#7e35d8}.c2000{background:#137995}.c5000{background:#2d8cda}
-.roads{flex:1;min-height:225px;background:#fff;color:#111;position:relative;overflow:hidden;display:grid;grid-template-columns:34% 66%}
-.roadStats{position:absolute;left:0;right:0;top:0;height:30px;background:#282830;color:#fff;display:flex;align-items:center;gap:8px;padding:0 8px;font-size:11px;z-index:2}.roadStats span{display:flex;align-items:center;gap:3px}.dot{width:13px;height:13px;border-radius:50%;display:inline-block}.dr{background:#ef1e31}.db{background:#1676e8}.dg{background:#25be61}.profit{margin-left:auto;color:#ffd37a}
-.bead{padding:37px 5px 5px;display:grid;grid-template-columns:repeat(6,24px);grid-auto-rows:24px;gap:4px;align-content:start;border-right:1px solid #ddd;overflow:hidden}
-.rightRoad{padding-top:34px;display:flex;flex-direction:column;overflow:hidden}.bigRoad{height:60%;display:grid;grid-template-columns:repeat(16,15px);grid-auto-rows:15px;gap:3px;padding:5px 6px;align-content:start;background-image:linear-gradient(#eef0f6 1px,transparent 1px),linear-gradient(90deg,#eef0f6 1px,transparent 1px);background-size:18px 18px;overflow:hidden}.derivedWrap{height:40%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:2px 6px}.derivedBox{overflow:hidden}.derivedBox p{margin:0 0 2px;font-size:9px;font-weight:900;text-align:left}.derived{display:grid;grid-template-columns:repeat(8,8px);grid-auto-rows:8px;gap:2px}
-.cell{border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;text-align:center}.cell.P{background:#1676e8}.cell.B{background:#ef1e31}.cell.T{background:#25be61}.cell.SEVEN{background:#1676e8;color:#fff}.ring{border-radius:50%;background:#fff;position:relative}.ring.P{border:2px solid #1676e8}.ring.B{border:2px solid #ef1e31}.ring.T{border:2px solid #25be61}.ring.seven:after{content:'7';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#1676e8;font-size:9px;font-weight:900}.mark{border-radius:50%;background:#fff}.mark.r{border:2px solid #ef1e31}.mark.b{border:2px solid #1676e8}
-@media(max-height:760px){.live{height:24vh;min-height:184px}.dealer{transform:translateX(-50%) scale(.43);bottom:46px}.dealCenter{top:54%;transform:translate(-50%,-50%)}.betPanel{height:248px}.roads{min-height:210px}.chips{height:52px}.chip{width:40px;height:40px}.bead{grid-template-columns:repeat(6,22px);grid-auto-rows:22px}.bigRoad{grid-template-columns:repeat(16,14px);grid-auto-rows:14px}}
-
-/* timer notch fix: keep timer centered, move center side-bet text below the timer */
-.side button[data-side="Lucky7"],
-.side button[data-side="Super7"]{padding-top:28px!important}
-.side button[data-side="Lucky7"] b,
-.side button[data-side="Super7"] b{font-size:11px!important;line-height:12px!important}
-.side button[data-side="Lucky7"] span,
-.side button[data-side="Super7"] span{font-size:7.5px!important;line-height:9px!important}
-
-
-/* final timer override */
-.timer{left:50%!important;right:auto!important;top:1px!important;transform:translateX(-50%)!important;width:45px!important;height:45px!important}
-
-
-/* VIP enhancement pack */
-.vipLight{position:absolute;inset:0;z-index:0;background:
-radial-gradient(circle at 50% 0%,rgba(255,235,170,.35),transparent 30%),
-radial-gradient(circle at 18% 38%,rgba(255,255,255,.15),transparent 18%),
-radial-gradient(circle at 82% 40%,rgba(255,255,255,.13),transparent 18%);
-mix-blend-mode:screen;pointer-events:none;animation:vipPulse 5s ease-in-out infinite}
-@keyframes vipPulse{0%,100%{opacity:.78}50%{opacity:1}}
-.shoeBox{position:absolute;right:18px;bottom:38px;width:58px;height:38px;border-radius:6px;background:linear-gradient(135deg,#111,#545454,#090909);border:1px solid rgba(255,220,150,.45);box-shadow:0 5px 14px #000a;transform:skew(-12deg);z-index:8;display:flex;align-items:center;justify-content:center;color:#ffd37a;font-size:9px;font-weight:900}
-.shoeBox i{position:absolute;right:8px;top:4px;width:5px;height:30px;background:#ffeb9b;border-radius:2px;box-shadow:0 0 6px #fff;transform:translateX(calc(-1px * var(--cut-pos, 16)))}
-.dealerTray{position:absolute;left:18px;bottom:38px;width:58px;height:30px;border-radius:6px;background:linear-gradient(#3a2520,#120707);border:1px solid rgba(255,220,150,.35);box-shadow:0 5px 14px #0009;z-index:8;color:#e7c17b;font-size:8px;display:flex;align-items:center;justify-content:center}
-.noMore{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%) scale(.85);z-index:80;padding:10px 22px;border-radius:18px;background:rgba(0,0,0,.78);border:1px solid rgba(255,220,140,.75);color:#ffd77f;text-align:center;font-weight:900;font-size:21px;line-height:1.1;letter-spacing:.5px;opacity:0;pointer-events:none;box-shadow:0 0 28px rgba(255,202,99,.25)}
-.noMore span{font-size:13px;color:#fff0c0}
-.noMore.show{animation:noMorePop 1.2s ease}
-@keyframes noMorePop{0%{opacity:0;transform:translate(-50%,-50%) scale(.65)}20%,80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.95)}}
-.fxLayer{position:absolute;inset:0;z-index:100;pointer-events:none;overflow:hidden}
-.flyChip{position:absolute;width:24px;height:24px;border-radius:50%;background:#b77918;border:3px dashed #fff;color:#fff;font-size:8px;font-weight:900;display:flex;align-items:center;justify-content:center;text-shadow:0 1px 2px #000;box-shadow:0 3px 8px #0008;animation:flyChip .48s ease-out forwards}
-.flyChip.m100{background:#8c40d4}.flyChip.m200{background:#2aa6b8}.flyChip.m1000{background:#7e35d8}.flyChip.m2000{background:#137995}.flyChip.m5000{background:#2d8cda}
-@keyframes flyChip{to{left:var(--tx);top:var(--ty);transform:scale(.75);opacity:.15}}
-.collectChip{position:absolute;width:24px;height:24px;border-radius:50%;background:#333;border:3px dashed #fff;animation:collectChip .65s ease-in forwards;opacity:.9}
-@keyframes collectChip{to{left:50%;top:24%;transform:scale(.35);opacity:0}}
-.payGlow{position:absolute;border-radius:16px;background:rgba(255,214,110,.24);box-shadow:0 0 22px rgba(255,214,110,.55);animation:payGlow .8s ease-out forwards}
-@keyframes payGlow{0%{opacity:0;transform:scale(.75)}35%{opacity:1}100%{opacity:0;transform:scale(1.08)}}
-.dealer.dealing .d-arm.r,.dealer.dealing .arm.r{animation:dealHand .42s ease-in-out 4}
-.dealer.dealing .d-hand.r{animation:dealHand2 .42s ease-in-out 4}
-@keyframes dealHand{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-28deg) translateX(16px) translateY(6px)}}
-@keyframes dealHand2{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,8px)}}
-.felt:after{content:"";position:absolute;inset:10px 28px;border:1px solid rgba(255,220,140,.24);border-radius:50%;box-shadow:inset 0 0 18px rgba(255,255,255,.08)}
-
-</style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="澳门VIP百家乐"/>
+<meta name="theme-color" content="#070203"/>
+<link rel="manifest" href="./manifest.json"/>
+<link rel="stylesheet" href="./css/app.css"/>
+<title>Macau VIP Baccarat Simulator 2.0 Deep Visual</title>
 </head>
 <body>
+<div id="splash"><div><b>MACAU VIP</b><span>Baccarat Simulator 2.0</span><i>Deep Visual Loading...</i></div></div>
 <div id="app">
-<header class="top"><button id="resetBtn">重置</button><b>MACAU VIP BACCARAT</b><span>余额 <strong id="money">10,000</strong></span></header>
-<section class="live">
-  <div class="tag"><i>LIVE</i><i>FLIP</i><i id="state">等待下注</i></div>
-  <div class="dealer"><div class="hair"></div><div class="face"><em></em><em></em><small></small></div><div class="neck"></div><div class="body"></div><div class="tie"></div><div class="arm l"></div><div class="arm r"></div></div>
-  <div class="vipLight"></div><div class="shoeBox"><span>SHOE</span><i id="cutCard"></i></div><div class="dealerTray">CUT CARD</div><div class="felt"></div>
-  <div class="dealCenter">
-    <div class="hand"><h3>闲 PLAYER</h3><div id="pCards" class="cards"></div><b id="pScore">0</b></div>
-    <div class="hand banker"><h3>庄 BANKER</h3><div id="bCards" class="cards"></div><b id="bScore">0</b></div>
+<header class="topbar"><button id="resetBtn">重置</button><strong>MACAU VIP BACCARAT 2.0</strong><span>余额 <b id="money">10,000</b></span></header>
+
+<section class="vip-room">
+  <div class="room-layer"></div>
+  <div class="light-layer"></div>
+  <div class="live-badge">LIVE · VIP ROOM</div>
+  <img class="dealer-img" id="dealer" src="./assets/dealer/dealer-pro.svg" alt="dealer"/>
+  <div class="shoe"><b>SHOE</b><span id="cutCard"></span></div>
+  <div class="table-wrap"><img src="./assets/table/vip-table.svg" alt="table"/></div>
+
+  <div class="card-stage">
+    <div class="hand-area player"><h3>闲 PLAYER</h3><div id="pCards" class="cards"></div><div id="pScore" class="score">0</div></div>
+    <div class="hand-area banker"><h3>庄 BANKER</h3><div id="bCards" class="cards"></div><div id="bScore" class="score">0</div></div>
   </div>
-  <div class="round">局号 GU<span id="roundNo">000001</span>　<span id="shoeLeft">牌靴416</span></div>
-  <div id="toast" class="toast"></div><div id="noMore" class="noMore">NO MORE BETS<br><span>停止下注</span></div>
+
+  <div id="noMore" class="no-more">NO MORE BETS<br><small>停止下注</small></div>
+  <div id="toast" class="toast"></div>
+  <div id="lastResult" class="last-result">最近一局：--</div>
+  <div class="round">局号 GU<span id="roundNo">000001</span> · <span id="shoeLeft">牌靴416</span></div>
+  <div id="shoeStats" class="shoe-stats">本靴 0 局</div>
 </section>
-<section class="betPanel">
-  <div class="info"><span>局号: GU<span id="roundNo2">000001</span></span><span>限红:10~2,000,000</span></div>
-  <div class="timer" id="timer">15</div>
-  <div class="side">
-    <button class="sideBet" data-side="PP"><b class="blue">闲对</b><span>1:11</span><small id="betPP">0</small><div class="chipStack" id="stackPP"></div></button>
-    <button class="sideBet" data-side="Lucky7"><b class="blue">幸运七</b><span>闲7赢<br>2张1:6 / 3张1:15</span><small id="betLucky7">0</small><div class="chipStack" id="stackLucky7"></div></button>
-    <button class="sideBet" data-side="Super7"><b class="orange">超级幸运七</b><span>闲7赢庄6<br>4张1:30/5张1:40/6张1:100</span><small id="betSuper7">0</small><div class="chipStack" id="stackSuper7"></div></button>
-    <button class="sideBet" data-side="Lucky6"><b class="redtxt">幸运六</b><span>庄6赢<br>2张1:12 / 3张1:20</span><small id="betLucky6">0</small><div class="chipStack" id="stackLucky6"></div></button>
-    <button class="sideBet" data-side="BP"><b class="redtxt">庄对</b><span>1:11</span><small id="betBP">0</small><div class="chipStack" id="stackBP"></div></button>
+
+<section class="bet-panel">
+  <div id="timer" class="timer">15</div>
+  <div class="side-bets">
+    <button data-side="PP"><b>闲对</b><span>1:11</span><div id="stackPP" class="chip-stack"></div></button>
+    <button data-side="Lucky7"><b>幸运七</b><span>闲7赢<br>2张1:6 / 3张1:15</span><div id="stackLucky7" class="chip-stack"></div></button>
+    <button data-side="Super7"><b>超级幸运七</b><span>闲7赢庄6<br>4张1:30 / 5张1:40 / 6张1:100</span><div id="stackSuper7" class="chip-stack"></div></button>
+    <button data-side="Lucky6"><b>幸运六</b><span>庄6赢<br>2张1:12 / 3张1:20</span><div id="stackLucky6" class="chip-stack"></div></button>
+    <button data-side="BP"><b>庄对</b><span>1:11</span><div id="stackBP" class="chip-stack"></div></button>
   </div>
-  <div class="bets">
-    <button class="bet P" data-bet="P"><small>下注 <b id="betP">0</b></small><i id="pctP">0%</i><strong>闲</strong><span>1:1</span><div class="chipStack" id="stackP"></div></button>
-    <button class="bet T" data-bet="T"><small>下注 <b id="betT">0</b></small><i id="pctT">0%</i><strong>和</strong><span>1:8</span><div class="chipStack" id="stackT"></div></button>
-    <button class="bet B" data-bet="B"><small>下注 <b id="betB">0</b></small><i id="pctB">0%</i><strong>庄</strong><span>1:0.95</span><div class="chipStack" id="stackB"></div></button>
+  <div class="main-bets">
+    <button class="bet player" data-bet="P"><small>下注 <b id="betP">0</b></small><strong>闲</strong><span>1:1</span><div id="stackP" class="chip-stack"></div></button>
+    <button class="bet tie" data-bet="T"><small>下注 <b id="betT">0</b></small><strong>和</strong><span>1:8</span><div id="stackT" class="chip-stack"></div></button>
+    <button class="bet banker" data-bet="B"><small>下注 <b id="betB">0</b></small><strong>庄</strong><span>1:0.95</span><div id="stackB" class="chip-stack"></div></button>
   </div>
   <div class="actions"><button id="clearBtn">取消</button><button id="repeatBtn">重复</button><button id="doubleBtn">加倍</button></div>
 </section>
+
 <section class="chips">
-  <button class="chip active c100" data-chip="100">100</button><button class="chip c200" data-chip="200">200</button><button class="chip c1000" data-chip="1000">1000</button><button class="chip c2000" data-chip="2000">2000</button><button class="chip c5000" data-chip="5000">5000</button>
+  <button class="chip active" data-chip="100"><img src="./assets/chips/chip-100.svg"/></button>
+  <button class="chip" data-chip="200"><img src="./assets/chips/chip-200.svg"/></button>
+  <button class="chip" data-chip="1000"><img src="./assets/chips/chip-1000.svg"/></button>
+  <button class="chip" data-chip="2000"><img src="./assets/chips/chip-2000.svg"/></button>
+  <button class="chip" data-chip="5000"><img src="./assets/chips/chip-5000.svg"/></button>
 </section>
-<section class="roads">
-  <div class="roadStats"><span><i class="dot dr"></i><b id="cntB">0</b></span><span><i class="dot db"></i><b id="cntP">0</b></span><span><i class="dot dg"></i><b id="cntT">0</b></span><span>7 <b id="cnt7">0</b></span><span class="profit">盈亏 <b id="profit">0</b></span></div>
-  <div id="bead" class="bead"></div>
-  <div class="rightRoad">
-    <div id="bigRoad" class="bigRoad"></div>
-    <div class="derivedWrap">
-      <div class="derivedBox"><p>大眼路</p><div id="eyeRoad" class="derived"></div></div>
-      <div class="derivedBox"><p>小路</p><div id="smallRoad" class="derived"></div></div>
-      <div class="derivedBox"><p>曱甴路</p><div id="cockRoad" class="derived"></div></div>
-    </div>
-  </div>
+
+<section class="control-panel">
+  <button id="soundBtn">声音 开</button><button id="speedBtn">速度 标准</button><button id="autoBtn">自动 关</button><button id="pauseBtn">暂停</button><button id="roadClearBtn">清路单</button><button id="moneyResetBtn">重置资金</button>
 </section>
-<div id="fxLayer" class="fxLayer"></div>
+
+<section id="statsPanel" class="stats-panel">
+  <div class="stats-title">数据中心</div>
+  <div class="stats-grid"><div><b id="statRounds">0</b><span>总局数</span></div><div><b id="statBetRounds">0</b><span>下注局</span></div><div><b id="statWinRate">0%</b><span>胜率</span></div><div><b id="statAvg">0</b><span>均局盈亏</span></div></div>
+  <div class="bars"><p>庄 <i><em id="barB"></em></i><span id="barBTxt">0%</span></p><p>闲 <i><em id="barP"></em></i><span id="barPTxt">0%</span></p><p>和 <i><em id="barT"></em></i><span id="barTTxt">0%</span></p></div>
+</section>
+
+<section class="roadmap">
+  <div id="trendBar" class="trend-bar"></div>
+  <div class="road-head"><span class="r">庄 <b id="cntB">0</b></span><span class="b">闲 <b id="cntP">0</b></span><span class="g">和 <b id="cntT">0</b></span><span class="profit">盈亏 <b id="profit">0</b></span></div>
+  <div id="beadRoad" class="bead-road"></div>
+  <div class="right-roads"><div id="bigRoad" class="big-road"></div><div class="derived"><div><p>大眼路</p><div id="eyeRoad"></div></div><div><p>小路</p><div id="smallRoad"></div></div><div><p>曱甴路</p><div id="cockRoad"></div></div></div></div>
+</section>
 </div>
-<script>
-const $=id=>document.getElementById(id);
-let audioCtx=null;
-function sound(type='chip'){
-  try{
-    audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
-    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
-    const map={chip:420,deal:560,flip:720,win:880,lose:180,nomore:300};
-    o.frequency.value=map[type]||420;
-    o.type=type==='lose'?'sawtooth':'sine';
-    g.gain.value=.035;
-    o.connect(g);g.connect(audioCtx.destination);
-    o.start();setTimeout(()=>o.stop(), type==='win'?180:80);
-  }catch(e){}
-}
-function showNoMore(){
-  const n=$('noMore'); if(!n)return;
-  n.classList.remove('show'); void n.offsetWidth; n.classList.add('show'); sound('nomore');
-}
-function centerOf(el){
-  if(!el)return {x:innerWidth/2,y:innerHeight/2};
-  const r=el.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2};
-}
-function flyChipTo(k,v,fromEvent){
-  const layer=$('fxLayer'); if(!layer)return;
-  const target=document.querySelector(`[data-bet="${k}"],[data-side="${k}"]`) || document.body;
-  const t=centerOf(target);
-  const f=document.createElement('div');
-  f.className='flyChip m'+v; f.textContent=v>=1000?(v/1000+'K'):v;
-  const sx=fromEvent?.changedTouches?.[0]?.clientX || fromEvent?.clientX || innerWidth/2;
-  const sy=fromEvent?.changedTouches?.[0]?.clientY || fromEvent?.clientY || innerHeight-60;
-  f.style.left=sx+'px'; f.style.top=sy+'px'; f.style.setProperty('--tx',t.x+'px'); f.style.setProperty('--ty',t.y+'px');
-  layer.appendChild(f); setTimeout(()=>f.remove(),520); sound('chip');
-}
-function collectFx(){
-  const layer=$('fxLayer'); if(!layer)return;
-  for(let i=0;i<10;i++){
-    const f=document.createElement('div'); f.className='collectChip';
-    f.style.left=(20+Math.random()*60)+'%'; f.style.top=(42+Math.random()*30)+'%';
-    layer.appendChild(f); setTimeout(()=>f.remove(),720);
-  }
-}
-function payFx(res){
-  const layer=$('fxLayer'); if(!layer)return;
-  const target=document.querySelector('.bet.'+res); if(!target)return;
-  const r=target.getBoundingClientRect();
-  const g=document.createElement('div'); g.className='payGlow';
-  g.style.left=r.left+'px'; g.style.top=r.top+'px'; g.style.width=r.width+'px'; g.style.height=r.height+'px';
-  layer.appendChild(g); setTimeout(()=>g.remove(),900);
-}
-const suits=['♠','♥','♦','♣'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-let money=10000, chip=100;
-let bets={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};
-let betChips={P:[],B:[],T:[],PP:[],BP:[],Lucky7:[],Super7:[],Lucky6:[]};
-let lastBet={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};
-let lastBetChips={P:[],B:[],T:[],PP:[],BP:[],Lucky7:[],Super7:[],Lucky6:[]};
-let shoe=[], hist=[], busy=false, round=1, timer=15, profit=0;
-function save(){localStorage.macauEffectsPro=JSON.stringify({money,chip,bets,betChips,lastBet,lastBetChips,shoe,hist,round,profit})}
-function load(){try{let s=JSON.parse(localStorage.macauEffectsPro||'{}');if(s.money!=null){money=s.money;chip=s.chip||chip;bets={...bets,...(s.bets||{})};betChips={...betChips,...(s.betChips||{})};lastBet={...lastBet,...(s.lastBet||{})};lastBetChips={...lastBetChips,...(s.lastBetChips||{})};shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();render();setInterval(countdown,1000)}
-function newShoe(){shoe=[];for(let d=0;d<8;d++)for(let s of suits)for(let r of ranks)shoe.push({r,s});for(let i=shoe.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shoe[i],shoe[j]]=[shoe[j],shoe[i]]}}
-function val(c){return c.r==='A'?1:('10JQK'.includes(c.r)?0:+c.r)}
-function total(h){return h.reduce((a,c)=>a+val(c),0)%10}
-function draw(){if(shoe.length<60)newShoe();return shoe.pop()}
-function thirdRule(bankTwoTotal, playerThirdValue){if(playerThirdValue==null)return bankTwoTotal<=5;if(bankTwoTotal<=2)return true;if(bankTwoTotal===3)return playerThirdValue!==8;if(bankTwoTotal===4)return playerThirdValue>=2&&playerThirdValue<=7;if(bankTwoTotal===5)return playerThirdValue>=4&&playerThirdValue<=7;if(bankTwoTotal===6)return playerThirdValue===6||playerThirdValue===7;return false}
-function card(c,back=false,flip=false,isNew=false){let cls='card '+(back?'back ':'')+(flip?'flip ':'')+(isNew?'new ':'');if(!back&&c&&(c.s==='♥'||c.s==='♦'))cls+='red';return `<div class="${cls}">${back?'◆':(c.r+c.s)}</div>`}
-function wait(ms){return new Promise(r=>setTimeout(r,ms))}
-function toast(t){let el=$('toast');el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}}
-function countdown(){if(busy)return;timer--;if(timer<=0){timer=0;$('timer').textContent=timer;autoRound()}else $('timer').textContent=timer}
-function totalBet(){return Object.values(bets).reduce((a,b)=>a+b,0)}
-function resetBets(){bets={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};betChips={P:[],B:[],T:[],PP:[],BP:[],Lucky7:[],Super7:[],Lucky6:[]}}
-function render(){
-  let tb=bets.P+bets.B+bets.T,den=Math.max(1,tb);
-  $('money').textContent=money.toLocaleString('zh-CN');
-  ['P','B','T','PP','BP','Lucky7','Super7','Lucky6'].forEach(k=>{
-    let el=$('bet'+k);if(el)el.textContent=bets[k];
-    let stack=$('stack'+k); if(stack) stack.innerHTML=betChips[k].slice(-6).map(v=>`<span class="miniChip m${v}">${v>=1000?v/1000+'K':v}</span>`).join('');
-  });
-  $('pctP').textContent=Math.round(bets.P/den*100)+'%';$('pctB').textContent=Math.round(bets.B/den*100)+'%';$('pctT').textContent=Math.round(bets.T/den*100)+'%';
-  document.documentElement.style.setProperty('--cut-pos', Math.max(4, Math.round((shoe.length/416)*32)) );$('roundNo').textContent=String(round).padStart(6,'0');$('roundNo2').textContent=String(round).padStart(6,'0');$('shoeLeft').textContent='牌靴'+shoe.length;$('profit').textContent=profit;roads();
-}
-function roads(){
-  let c={B:0,P:0,T:0,S7:0};hist.forEach(x=>{c[x.res]++; if(x.is7)c.S7++});
-  $('cntB').textContent=c.B;$('cntP').textContent=c.P;$('cntT').textContent=c.T;$('cnt7').textContent=c.S7;
-  let bead=hist.slice(-36).map(x=>`<div class="cell ${x.is7?'SEVEN':x.res}">${x.is7?'7':(x.res==='B'?'庄':x.res==='P'?'闲':'和')}</div>`);
-  while(bead.length<36)bead.push('<div></div>');$('bead').innerHTML=bead.join('');
-  let non=hist.filter(x=>x.res!=='T');
-  let big=non.slice(-112).map(x=>`<div class="ring ${x.res} ${x.is7?'seven':''}"></div>`);
-  while(big.length<112)big.push('<div></div>');$('bigRoad').innerHTML=big.join('');
-  let colors=[];for(let i=1;i<non.length;i++)colors.push(non[i].res===non[i-1].res?'r':'b');
-  ['eyeRoad','smallRoad','cockRoad'].forEach((id,idx)=>{let arr=colors.slice(idx).slice(-48).map(x=>`<div class="mark ${x}"></div>`);while(arr.length<48)arr.push('<div></div>');$(id).innerHTML=arr.join('')});
-}
-function tap(el,fn){el.addEventListener('click',fn);el.addEventListener('touchend',e=>{e.preventDefault();fn(e)},{passive:false})}
-document.querySelectorAll('.chip').forEach(el=>tap(el,()=>{if(busy)return;chip=+el.dataset.chip;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');save()}));
-document.querySelectorAll('.bet').forEach(el=>tap(el,(e)=>place(el.dataset.bet,e)));
-document.querySelectorAll('.sideBet').forEach(el=>tap(el,(e)=>place(el.dataset.side,e)));
-function place(k,e){if(busy)return;if(money<chip)return toast('余额不足');bets[k]+=chip;betChips[k].push(chip);money-=chip;flyChipTo(k,chip,e);render();save()}
-tap($('clearBtn'),()=>{if(busy)return;money+=totalBet();resetBets();render();save()});
-tap($('repeatBtn'),()=>{if(busy)return;let s=Object.values(lastBet).reduce((a,b)=>a+b,0);if(!s)return toast('没有上一局');if(money<s)return toast('余额不足');money-=s;bets={...lastBet};betChips=JSON.parse(JSON.stringify(lastBetChips));render();save()});
-tap($('doubleBtn'),()=>{if(busy)return;let s=totalBet();if(!s)return toast('请先下注');if(money<s)return toast('余额不足');money-=s;Object.keys(bets).forEach(k=>{bets[k]*=2;betChips[k]=betChips[k].concat(betChips[k])});render();save()});
-tap($('resetBtn'),()=>{if(confirm('重置全部数据？')){localStorage.removeItem('macauEffectsPro');location.reload()}});
-async function autoRound(){
-  if(busy)return;showNoMore();await wait(900);busy=true;$('state').textContent='发暗牌';document.querySelector('.dealer')?.classList.add('dealing');
-  document.querySelectorAll('.bet,.sideBet').forEach(x=>x.classList.remove('win'));
-  lastBet={...bets}; lastBetChips=JSON.parse(JSON.stringify(betChips));
-  $('pCards').innerHTML='';$('bCards').innerHTML='';$('pScore').textContent='?';$('bScore').textContent='?';
-  let P=[],B=[];
-  P.push(draw());await showBack(P,B,700,true);
-  B.push(draw());await showBack(P,B,700,true);
-  P.push(draw());await showBack(P,B,700,true);
-  B.push(draw());await showBack(P,B,1000,true);
-  $('state').textContent='自动翻牌';
-  await flipShow(P,B,1,0,850,true,'P');
-  await flipShow(P,B,1,1,850,true,'B');
-  await flipShow(P,B,2,1,850,true,'P');
-  await flipShow(P,B,2,2,1000,true,'B');
-  let pt=total(P),bt=total(B),p3=null;
-  if(!(pt>=8||bt>=8)){
-    if(pt<=5){
-      $('state').textContent='闲补牌';
-      let c=draw();P.push(c);
-      await showKnownWithBack(P,B,'P',1000);
-      p3=val(c); await flipShow(P,B,P.length,B.length,1000,true,'P');
-    }
-    if(thirdRule(total(B.slice(0,2)),p3)){
-      $('state').textContent='庄补牌';
-      let c=draw();B.push(c);
-      await showKnownWithBack(P,B,'B',1000);
-      await flipShow(P,B,P.length,B.length,1000,true,'B');
-    }
-  }
-  pt=total(P);bt=total(B);
-  let res=pt>bt?'P':bt>pt?'B':'T';
-  let stake=totalBet(), payout=settle(P,B,res,pt,bt);
-  money+=payout;
-  let delta=payout-stake;profit+=delta;
-  let is7=(res==='P'&&pt===7);
-  hist.push({res,pt,bt,delta,is7});if(hist.length>240)hist.shift();
-  markWins(P,B,res,pt,bt);
-  document.querySelector('.dealer')?.classList.remove('dealing');
-  if(delta<0)collectFx(); else if(delta>0)payFx(res);
-  sound(delta>0?'win':(delta<0?'lose':'flip'));
-  toast((res==='P'?'闲赢':res==='B'?'庄赢':'和局')+' '+(delta>=0?'+':'')+delta);
-  resetBets();round++;timer=15;busy=false;$('state').textContent='等待下注';render();save();
-}
-function settle(P,B,res,pt,bt){
-  let p=0;
-  if(res==='P')p+=bets.P*2;
-  if(res==='B')p+=Math.floor(bets.B*1.95);
-  if(res==='T')p+=bets.T*9+bets.P+bets.B;
-  let pp=P[0]&&P[1]&&P[0].r===P[1].r, bp=B[0]&&B[1]&&B[0].r===B[1].r;
-  if(pp)p+=bets.PP*12;if(bp)p+=bets.BP*12;
-  let cardCount=P.length+B.length;
-  if(res==='P'&&pt===7){if(P.length===2)p+=bets.Lucky7*7;if(P.length===3)p+=bets.Lucky7*16}
-  if(res==='P'&&pt===7&&bt===6){if(cardCount===4)p+=bets.Super7*31;else if(cardCount===5)p+=bets.Super7*41;else if(cardCount===6)p+=bets.Super7*101}
-  if(res==='B'&&bt===6){if(B.length===2)p+=bets.Lucky6*13;if(B.length===3)p+=bets.Lucky6*21}
-  return p;
-}
-function markWins(P,B,res,pt,bt){
-  document.querySelector('.bet.'+res)?.classList.add('win');
-  let pp=P[0]&&P[1]&&P[0].r===P[1].r, bp=B[0]&&B[1]&&B[0].r===B[1].r;
-  if(pp)document.querySelector('[data-side="PP"]').classList.add('win');
-  if(bp)document.querySelector('[data-side="BP"]').classList.add('win');
-  if(res==='P'&&pt===7)document.querySelector('[data-side="Lucky7"]').classList.add('win');
-  if(res==='P'&&pt===7&&bt===6)document.querySelector('[data-side="Super7"]').classList.add('win');
-  if(res==='B'&&bt===6)document.querySelector('[data-side="Lucky6"]').classList.add('win');
-}
-async function showBack(P,B,ms,isNew=false){sound('deal');$('pCards').innerHTML=P.map(()=>card(null,true,false,isNew)).join('');$('bCards').innerHTML=B.map(()=>card(null,true,false,isNew)).join('');await wait(ms)}
-async function flipShow(P,B,pCount,bCount,ms,flipLast=false, side=''){
-  sound('flip');$('pCards').innerHTML=P.map((c,i)=>{
-    const shouldShow=i<pCount;
-    const animate=flipLast && side==='P' && i===pCount-1;
-    return shouldShow?card(c,false,animate):card(c,true);
-  }).join('');
-  $('bCards').innerHTML=B.map((c,i)=>{
-    const shouldShow=i<bCount;
-    const animate=flipLast && side==='B' && i===bCount-1;
-    return shouldShow?card(c,false,animate):card(c,true);
-  }).join('');
-  $('pScore').textContent=pCount?total(P.slice(0,pCount)):'?';
-  $('bScore').textContent=bCount?total(B.slice(0,bCount)):'?';
-  await wait(ms);
-}
-async function showKnownWithBack(P,B,side,ms){
-  $('pCards').innerHTML=P.map((c,i)=>side==='P'&&i===P.length-1?card(null,true,true):card(c,false)).join('');
-  $('bCards').innerHTML=B.map((c,i)=>side==='B'&&i===B.length-1?card(null,true,true):card(c,false)).join('');
-  await wait(ms);
-}
-load();
-</script>
+<div class="rotate-hint">横屏体验更接近 VIP 桌面</div>
+<div id="fxLayer"></div>
+<script type="module" src="./js/app.js"></script>
 </body>
 </html>

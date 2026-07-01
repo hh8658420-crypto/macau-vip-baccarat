@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="430" viewBox="0 0 360 430">
+<defs>
+<linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe0cf"/><stop offset="1" stop-color="#d69082"/></linearGradient>
+<linearGradient id="dress" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dcdcdc"/></linearGradient>
+<radialGradient id="hair" cx="45%" cy="18%" r="72%"><stop offset="0" stop-color="#57404c"/><stop offset=".6" stop-color="#150b10"/><stop offset="1" stop-color="#030203"/></radialGradient>
+<filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000" flood-opacity=".55"/></filter>
+</defs>
+<g filter="url(#s)">
+<path d="M104 38 C115 8 247 8 256 52 C284 72 281 158 255 190 C224 164 136 164 103 190 C74 148 76 72 104 38Z" fill="url(#hair)"/>
+<path d="M88 110 C58 150 60 270 96 350 L126 338 C98 260 100 178 122 132Z" fill="#090407"/>
+<path d="M272 110 C302 150 300 270 264 350 L234 338 C262 260 260 178 238 132Z" fill="#090407"/>
+<ellipse cx="180" cy="126" rx="68" ry="78" fill="url(#skin)"/>
+<path d="M115 102 C132 44 231 42 247 105 C225 78 140 80 115 102Z" fill="url(#hair)"/>
+<ellipse cx="154" cy="128" rx="8" ry="5" fill="#211014"/>
+<ellipse cx="206" cy="128" rx="8" ry="5" fill="#211014"/>
+<path d="M166 163 Q180 173 195 163" fill="none" stroke="#bd394b" stroke-width="4" stroke-linecap="round"/>
+<rect x="158" y="196" width="44" height="38" rx="14" fill="#dfa496"/>
+<path d="M92 238 C108 210 252 210 268 238 L296 410 L64 410Z" fill="url(#dress)"/>
+<path d="M135 234 L180 278 L225 234 Q180 250 135 234Z" fill="#172a5c"/>
+<path d="M58 282 C88 245 130 250 154 278 C132 310 103 332 68 328Z" fill="url(#skin)"/>
+<path d="M302 282 C272 245 230 250 206 278 C228 310 257 332 292 328Z" fill="url(#skin)"/>
+<ellipse cx="70" cy="323" rx="24" ry="18" fill="#efbfae"/>
+<ellipse cx="290" cy="323" rx="24" ry="18" fill="#efbfae"/>
+</g>
+</svg>

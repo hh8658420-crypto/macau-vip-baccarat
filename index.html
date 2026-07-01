@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="澳门VIP百家乐">
 <meta name="theme-color" content="#7b1119">
-<title>澳门VIP百家乐 Flip Chip Stack</title>
+<title>澳门VIP百家乐 Timer Notch Fix</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080203;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",Arial,sans-serif}
@@ -37,6 +37,19 @@ body{position:fixed;inset:0}
 .rightRoad{padding-top:34px;display:flex;flex-direction:column;overflow:hidden}.bigRoad{height:60%;display:grid;grid-template-columns:repeat(16,15px);grid-auto-rows:15px;gap:3px;padding:5px 6px;align-content:start;background-image:linear-gradient(#eef0f6 1px,transparent 1px),linear-gradient(90deg,#eef0f6 1px,transparent 1px);background-size:18px 18px;overflow:hidden}.derivedWrap{height:40%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;padding:2px 6px}.derivedBox{overflow:hidden}.derivedBox p{margin:0 0 2px;font-size:9px;font-weight:900;text-align:left}.derived{display:grid;grid-template-columns:repeat(8,8px);grid-auto-rows:8px;gap:2px}
 .cell{border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;text-align:center}.cell.P{background:#1676e8}.cell.B{background:#ef1e31}.cell.T{background:#25be61}.cell.SEVEN{background:#1676e8;color:#fff}.ring{border-radius:50%;background:#fff;position:relative}.ring.P{border:2px solid #1676e8}.ring.B{border:2px solid #ef1e31}.ring.T{border:2px solid #25be61}.ring.seven:after{content:'7';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#1676e8;font-size:9px;font-weight:900}.mark{border-radius:50%;background:#fff}.mark.r{border:2px solid #ef1e31}.mark.b{border:2px solid #1676e8}
 @media(max-height:760px){.live{height:24vh;min-height:184px}.dealer{transform:translateX(-50%) scale(.43);bottom:46px}.dealCenter{top:54%;transform:translate(-50%,-50%)}.betPanel{height:248px}.roads{min-height:210px}.chips{height:52px}.chip{width:40px;height:40px}.bead{grid-template-columns:repeat(6,22px);grid-auto-rows:22px}.bigRoad{grid-template-columns:repeat(16,14px);grid-auto-rows:14px}}
+
+/* timer notch fix: keep timer centered, move center side-bet text below the timer */
+.side button[data-side="Lucky7"],
+.side button[data-side="Super7"]{padding-top:28px!important}
+.side button[data-side="Lucky7"] b,
+.side button[data-side="Super7"] b{font-size:11px!important;line-height:12px!important}
+.side button[data-side="Lucky7"] span,
+.side button[data-side="Super7"] span{font-size:7.5px!important;line-height:9px!important}
+
+
+/* final timer override */
+.timer{left:50%!important;right:auto!important;top:1px!important;transform:translateX(-50%)!important;width:45px!important;height:45px!important}
+
 </style>
 </head>
 <body>
@@ -95,8 +108,8 @@ let betChips={P:[],B:[],T:[],PP:[],BP:[],Lucky7:[],Super7:[],Lucky6:[]};
 let lastBet={P:0,B:0,T:0,PP:0,BP:0,Lucky7:0,Super7:0,Lucky6:0};
 let lastBetChips={P:[],B:[],T:[],PP:[],BP:[],Lucky7:[],Super7:[],Lucky6:[]};
 let shoe=[], hist=[], busy=false, round=1, timer=15, profit=0;
-function save(){localStorage.macauFlipChipStack=JSON.stringify({money,chip,bets,betChips,lastBet,lastBetChips,shoe,hist,round,profit})}
-function load(){try{let s=JSON.parse(localStorage.macauFlipChipStack||'{}');if(s.money!=null){money=s.money;chip=s.chip||chip;bets={...bets,...(s.bets||{})};betChips={...betChips,...(s.betChips||{})};lastBet={...lastBet,...(s.lastBet||{})};lastBetChips={...lastBetChips,...(s.lastBetChips||{})};shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();render();setInterval(countdown,1000)}
+function save(){localStorage.macauTimerNotchFix=JSON.stringify({money,chip,bets,betChips,lastBet,lastBetChips,shoe,hist,round,profit})}
+function load(){try{let s=JSON.parse(localStorage.macauTimerNotchFix||'{}');if(s.money!=null){money=s.money;chip=s.chip||chip;bets={...bets,...(s.bets||{})};betChips={...betChips,...(s.betChips||{})};lastBet={...lastBet,...(s.lastBet||{})};lastBetChips={...lastBetChips,...(s.lastBetChips||{})};shoe=s.shoe||[];hist=s.hist||[];round=s.round||1;profit=s.profit||0}}catch(e){} if(shoe.length<80)newShoe();render();setInterval(countdown,1000)}
 function newShoe(){shoe=[];for(let d=0;d<8;d++)for(let s of suits)for(let r of ranks)shoe.push({r,s});for(let i=shoe.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[shoe[i],shoe[j]]=[shoe[j],shoe[i]]}}
 function val(c){return c.r==='A'?1:('10JQK'.includes(c.r)?0:+c.r)}
 function total(h){return h.reduce((a,c)=>a+val(c),0)%10}
@@ -137,7 +150,7 @@ function place(k){if(busy)return;if(money<chip)return toast('余额不足');bets
 tap($('clearBtn'),()=>{if(busy)return;money+=totalBet();resetBets();render();save()});
 tap($('repeatBtn'),()=>{if(busy)return;let s=Object.values(lastBet).reduce((a,b)=>a+b,0);if(!s)return toast('没有上一局');if(money<s)return toast('余额不足');money-=s;bets={...lastBet};betChips=JSON.parse(JSON.stringify(lastBetChips));render();save()});
 tap($('doubleBtn'),()=>{if(busy)return;let s=totalBet();if(!s)return toast('请先下注');if(money<s)return toast('余额不足');money-=s;Object.keys(bets).forEach(k=>{bets[k]*=2;betChips[k]=betChips[k].concat(betChips[k])});render();save()});
-tap($('resetBtn'),()=>{if(confirm('重置全部数据？')){localStorage.removeItem('macauFlipChipStack');location.reload()}});
+tap($('resetBtn'),()=>{if(confirm('重置全部数据？')){localStorage.removeItem('macauTimerNotchFix');location.reload()}});
 async function autoRound(){
   if(busy)return;busy=true;$('state').textContent='发暗牌';
   document.querySelectorAll('.bet,.sideBet').forEach(x=>x.classList.remove('win'));
@@ -149,23 +162,23 @@ async function autoRound(){
   P.push(draw());await showBack(P,B,700,true);
   B.push(draw());await showBack(P,B,1000,true);
   $('state').textContent='自动翻牌';
-  await flipShow(P,B,1,0,850);
-  await flipShow(P,B,1,1,850);
-  await flipShow(P,B,2,1,850);
-  await flipShow(P,B,2,2,1000);
+  await flipShow(P,B,1,0,850,true,'P');
+  await flipShow(P,B,1,1,850,true,'B');
+  await flipShow(P,B,2,1,850,true,'P');
+  await flipShow(P,B,2,2,1000,true,'B');
   let pt=total(P),bt=total(B),p3=null;
   if(!(pt>=8||bt>=8)){
     if(pt<=5){
       $('state').textContent='闲补牌';
       let c=draw();P.push(c);
       await showKnownWithBack(P,B,'P',1000);
-      p3=val(c); await flipShow(P,B,P.length,B.length,1000,true);
+      p3=val(c); await flipShow(P,B,P.length,B.length,1000,true,'P');
     }
     if(thirdRule(total(B.slice(0,2)),p3)){
       $('state').textContent='庄补牌';
       let c=draw();B.push(c);
       await showKnownWithBack(P,B,'B',1000);
-      await flipShow(P,B,P.length,B.length,1000,true);
+      await flipShow(P,B,P.length,B.length,1000,true,'B');
     }
   }
   pt=total(P);bt=total(B);
@@ -202,10 +215,19 @@ function markWins(P,B,res,pt,bt){
   if(res==='B'&&bt===6)document.querySelector('[data-side="Lucky6"]').classList.add('win');
 }
 async function showBack(P,B,ms,isNew=false){$('pCards').innerHTML=P.map(()=>card(null,true,false,isNew)).join('');$('bCards').innerHTML=B.map(()=>card(null,true,false,isNew)).join('');await wait(ms)}
-async function flipShow(P,B,pCount,bCount,ms,flipLast=false){
-  $('pCards').innerHTML=P.map((c,i)=>i<pCount?card(c,false,flipLast&&i===pCount-1):card(c,true)).join('');
-  $('bCards').innerHTML=B.map((c,i)=>i<bCount?card(c,false,flipLast&&i===bCount-1):card(c,true)).join('');
-  $('pScore').textContent=pCount?total(P.slice(0,pCount)):'?';$('bScore').textContent=bCount?total(B.slice(0,bCount)):'?';
+async function flipShow(P,B,pCount,bCount,ms,flipLast=false, side=''){
+  $('pCards').innerHTML=P.map((c,i)=>{
+    const shouldShow=i<pCount;
+    const animate=flipLast && side==='P' && i===pCount-1;
+    return shouldShow?card(c,false,animate):card(c,true);
+  }).join('');
+  $('bCards').innerHTML=B.map((c,i)=>{
+    const shouldShow=i<bCount;
+    const animate=flipLast && side==='B' && i===bCount-1;
+    return shouldShow?card(c,false,animate):card(c,true);
+  }).join('');
+  $('pScore').textContent=pCount?total(P.slice(0,pCount)):'?';
+  $('bScore').textContent=bCount?total(B.slice(0,bCount)):'?';
   await wait(ms);
 }
 async function showKnownWithBack(P,B,side,ms){
